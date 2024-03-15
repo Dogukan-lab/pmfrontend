@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
 import 'package:pmfrontend/states/login_state.dart';
-import 'package:pmfrontend/usecases/login_usecase.dart';
+import 'package:pmfrontend/usecases/login_and_register_usecase.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({super.key});

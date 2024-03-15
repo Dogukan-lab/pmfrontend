@@ -5,8 +5,8 @@ import 'package:pmfrontend/states/login_state.dart';
 import 'package:pmfrontend/states/page_state.dart';
 import 'package:pmfrontend/usecases/login_and_register_usecase.dart';
 
-class LoginButtons extends StatelessWidget {
-  const LoginButtons({super.key});
+class RegisterButtons extends StatelessWidget {
+  const RegisterButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginButtons extends StatelessWidget {
       children: [
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => requestLogin(ref),
+            onTap: () => ref.read(pageStateProvider.notifier).state = Pages.login,
             child: Container(
               decoration: BoxDecoration(
                 color: Cols.darkGrey,
@@ -27,7 +27,7 @@ class LoginButtons extends StatelessWidget {
                 child: Row(
                   children: [
                     const Text(
-                      'Login',
+                      'Back',
                       style: Fonts.trajan,
                     ),
                     if (ref.watch(loginStateProvider).loginEnum == LoginStateEnum.waiting)
@@ -50,7 +50,7 @@ class LoginButtons extends StatelessWidget {
         ),
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => ref.read(pageStateProvider.notifier).state = Pages.register,
+            onTap: () => requestRegistration(ref),
             child: child,
           ),
           child: Container(

@@ -12,9 +12,6 @@ void requestLogin(WidgetRef ref) async {
 
   loginNotifier.changeEnum(LoginStateEnum.waiting);
 
-  print(loginState.username);
-  print(loginState.password);
-
   final response = await serverRequest(
     'PmUsers',
     jsonEncode(PmUser(
@@ -26,8 +23,8 @@ void requestLogin(WidgetRef ref) async {
   if (response.statusCode == HttpStatus.ok) {
     print('TO HOME PAGE');
     loginNotifier.changeEnum(LoginStateEnum.none);
-  } else {
+  } else
     loginNotifier.changeEnum(LoginStateEnum.incorrect);
-    print(response.body);
-  }
 }
+
+void requestRegistration(WidgetRef ref) async {}
