@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/states/login_state.dart';
 import 'package:pmfrontend/widgets/login/login_buttons.dart';
 import 'package:pmfrontend/widgets/login/login_inputs.dart';
 
@@ -88,6 +90,17 @@ class LoginPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: Pad.large, vertical: Pad.mediumPlus),
                       child: LoginButtons(),
                     ),
+
+                    //Error message
+                    Consumer(
+                      builder: (_, ref, child) {
+                        return ref.watch(loginStateProvider) == LoginState.incorrect ? child! : const SizedBox.shrink();
+                      },
+                      child: Text(
+                        'Username or password incorrect',
+                        style: Fonts.trajan.copyWith(color: Cols.red),
+                      ),
+                    )
                   ],
                 ),
               ),

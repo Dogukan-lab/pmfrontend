@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
 import 'package:pmfrontend/states/login_state.dart';
+import 'package:pmfrontend/usecases/login_usecase.dart';
 
 class LoginButtons extends StatelessWidget {
   const LoginButtons({super.key});
@@ -13,7 +14,7 @@ class LoginButtons extends StatelessWidget {
       children: [
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => ref.read(loginStateProvider.notifier).state = LoginState.both,
+            onTap: () => requestLogin('', '', ref.read(loginStateProvider.notifier)),
             child: child,
           ),
           child: Container(

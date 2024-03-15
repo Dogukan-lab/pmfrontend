@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/states/login_state.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({super.key});
@@ -20,28 +18,12 @@ class _LoginInputsState extends State<LoginInputs> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         //Username Header
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Username',
-              style: Fonts.trajan,
-            ),
-            Consumer(
-              builder: (_, ref, child) {
-                final state = ref.watch(loginStateProvider);
-
-                if (state == LoginState.usernameUnknown || state == LoginState.both) {
-                  return child!;
-                } else
-                  return const SizedBox.shrink();
-              },
-              child: Text(
-                'Username incorrect',
-                style: Fonts.trajan.copyWith(color: Cols.red),
-              ),
-            ),
-          ],
+        const SizedBox(
+          width: double.infinity,
+          child: Text(
+            'Username',
+            style: Fonts.trajan,
+          ),
         ),
 
         //Username Field
@@ -66,28 +48,12 @@ class _LoginInputsState extends State<LoginInputs> {
         const SizedBox(height: Pad.medium),
 
         //Password Header
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Password',
-              style: Fonts.trajan,
-            ),
-            Consumer(
-              builder: (_, ref, child) {
-                final state = ref.watch(loginStateProvider);
-
-                if (state == LoginState.passwordIncorrect || state == LoginState.both) {
-                  return child!;
-                } else
-                  return const SizedBox.shrink();
-              },
-              child: Text(
-                'Password incorrect',
-                style: Fonts.trajan.copyWith(color: Cols.red),
-              ),
-            ),
-          ],
+        const SizedBox(
+          width: double.infinity,
+          child: Text(
+            'Password',
+            style: Fonts.trajan,
+          ),
         ),
 
         //Password Field
