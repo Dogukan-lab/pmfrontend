@@ -5,6 +5,18 @@ import 'package:pmfrontend/widgets/login/login_inputs.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
+  /*
+  Stack
+    Stack
+      Background image
+      Gradient (with transform)
+    Row
+      Column with container for gradient
+        Pale Messenger header
+        Login Inputs
+      Empty expanded for flex
+  **/
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -54,13 +66,16 @@ class LoginPage extends StatelessWidget {
                     stops: [0.0, 0.6233, 0.9027, 0.9752, 1.0],
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   children: [
-                    Text(
-                      'Pale Messenger',
-                      style: trajan,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: Pad.large),
+                      child: Text(
+                        'Pale Messenger',
+                        style: Fonts.trajan.copyWith(fontSize: 30),
+                      ),
                     ),
-                    LoginInputs(),
+                    const LoginInputs(),
                   ],
                 ),
               ),
