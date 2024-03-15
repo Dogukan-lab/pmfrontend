@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/states/login_state.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({super.key});
@@ -25,9 +27,19 @@ class _LoginInputsState extends State<LoginInputs> {
               'Username',
               style: Fonts.trajan,
             ),
-            Text(
-              'Username unknown',
-              style: Fonts.trajan.copyWith(color: Cols.red),
+            Consumer(
+              builder: (_, ref, child) {
+                final state = ref.watch(loginStateProvider);
+
+                if (state == LoginState.usernameUnknown || state == LoginState.both) {
+                  return child!;
+                } else
+                  return const SizedBox.shrink();
+              },
+              child: Text(
+                'Username incorrect',
+                style: Fonts.trajan.copyWith(color: Cols.red),
+              ),
             ),
           ],
         ),
@@ -61,9 +73,19 @@ class _LoginInputsState extends State<LoginInputs> {
               'Password',
               style: Fonts.trajan,
             ),
-            Text(
-              'Password incorrect',
-              style: Fonts.trajan.copyWith(color: Cols.red),
+            Consumer(
+              builder: (_, ref, child) {
+                final state = ref.watch(loginStateProvider);
+
+                if (state == LoginState.passwordIncorrect || state == LoginState.both) {
+                  return child!;
+                } else
+                  return const SizedBox.shrink();
+              },
+              child: Text(
+                'Password incorrect',
+                style: Fonts.trajan.copyWith(color: Cols.red),
+              ),
             ),
           ],
         ),
