@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
 import 'package:pmfrontend/states/login_state.dart';
+import 'package:pmfrontend/usecases/login_usecase.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({super.key});
@@ -39,6 +40,10 @@ class _LoginInputsState extends State<LoginInputs> {
             builder: (_, ref, child) => TextField(
               controller: _usernameController,
               onChanged: (value) => ref.read(loginStateProvider.notifier).changeUsername(_usernameController.text),
+              onSubmitted: (_) {
+                ref.read(loginStateProvider.notifier).changeUsername(_usernameController.text);
+                requestLogin(ref);
+              },
               style: Fonts.ggGrey,
               cursorColor: Cols.darkGrey,
               decoration: const InputDecoration(
@@ -72,6 +77,10 @@ class _LoginInputsState extends State<LoginInputs> {
             builder: (_, ref, child) => TextField(
               controller: _passwordController,
               onChanged: (value) => ref.read(loginStateProvider.notifier).changePassword(_passwordController.text),
+              onSubmitted: (_) {
+                ref.read(loginStateProvider.notifier).changePassword(_passwordController.text);
+                requestLogin(ref);
+              },
               style: Fonts.ggGrey,
               decoration: const InputDecoration(
                 border: InputBorder.none,
