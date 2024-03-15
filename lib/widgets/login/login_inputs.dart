@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/states/login_state.dart';
-import 'package:pmfrontend/usecases/login_and_register_usecase.dart';
 
 class LoginInputs extends StatefulWidget {
-  const LoginInputs({super.key});
+  const LoginInputs({
+    super.key,
+    required this.usernameChange,
+    required this.usernameSubmit,
+    required this.passwordChange,
+    required this.passwordSubmit,
+  });
+
+  final void Function(WidgetRef ref, String text) usernameChange;
+  final void Function(WidgetRef ref) usernameSubmit;
+  final void Function(WidgetRef ref, String text) passwordChange;
+  final void Function(WidgetRef ref) passwordSubmit;
 
   @override
   State<LoginInputs> createState() => _LoginInputsState();
@@ -17,6 +26,9 @@ class _LoginInputsState extends State<LoginInputs> {
 
   @override
   Widget build(BuildContext context) {
+    _usernameController.clear();
+    _passwordController.clear();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -37,20 +49,22 @@ class _LoginInputsState extends State<LoginInputs> {
             borderRadius: BorderRadius.circular(Radii.small),
           ),
           child: Consumer(
-            builder: (_, ref, child) => TextField(
-              controller: _usernameController,
-              onChanged: (value) => ref.read(loginStateProvider.notifier).changeUsername(_usernameController.text),
-              onSubmitted: (_) {
-                ref.read(loginStateProvider.notifier).changeUsername(_usernameController.text);
-                requestLogin(ref);
-              },
-              style: Fonts.ggGrey,
-              cursorColor: Cols.darkGrey,
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-                border: InputBorder.none,
-              ),
-            ),
+            builder: (_, ref, __) {
+              return TextField(
+                controller: _usernameController,
+                onChanged: (value) => widget.usernameChange(ref, _usernameController.text),
+                onSubmitted: (_) {
+                  widget.usernameChange(ref, _usernameController.text);
+                  widget.usernameSubmit(ref);
+                },
+                style: Fonts.ggGrey,
+                cursorColor: Cols.darkGrey,
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+                  border: InputBorder.none,
+                ),
+              );
+            },
           ),
         ),
 
@@ -74,22 +88,24 @@ class _LoginInputsState extends State<LoginInputs> {
             borderRadius: BorderRadius.circular(Radii.small),
           ),
           child: Consumer(
-            builder: (_, ref, child) => TextField(
-              controller: _passwordController,
-              onChanged: (value) => ref.read(loginStateProvider.notifier).changePassword(_passwordController.text),
-              onSubmitted: (_) {
-                ref.read(loginStateProvider.notifier).changePassword(_passwordController.text);
-                requestLogin(ref);
-              },
-              style: Fonts.ggGrey,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-              ),
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-            ),
+            builder: (_, ref, __) {
+              return TextField(
+                controller: _passwordController,
+                onChanged: (value) => widget.passwordChange(ref, _passwordController.text),
+                onSubmitted: (_) {
+                  widget.passwordChange(ref, _passwordController.text);
+                  widget.passwordSubmit(ref);
+                },
+                style: Fonts.ggGrey,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+                ),
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+              );
+            },
           ),
         ),
       ],

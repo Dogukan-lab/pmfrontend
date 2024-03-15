@@ -6,7 +6,9 @@ import 'package:pmfrontend/states/page_state.dart';
 import 'package:pmfrontend/usecases/login_and_register_usecase.dart';
 
 class LoginButtons extends StatelessWidget {
-  const LoginButtons({super.key});
+  const LoginButtons({super.key, this.isLogin = true});
+
+  final bool isLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class LoginButtons extends StatelessWidget {
       children: [
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => requestLogin(ref),
+            onTap: () => isLogin ? requestLogin(ref) : ref.read(pageStateProvider.notifier).state = Pages.login,
             child: Container(
               decoration: BoxDecoration(
                 color: Cols.darkGrey,
@@ -26,11 +28,11 @@ class LoginButtons extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: Pad.smallPlus, vertical: Pad.smallMinus),
                 child: Row(
                   children: [
-                    const Text(
-                      'Login',
+                    Text(
+                      isLogin ? 'Login' : 'back',
                       style: Fonts.trajan,
                     ),
-                    if (ref.watch(loginStateProvider).loginEnum == LoginStateEnum.waiting)
+                    if (isLogin && ref.watch(loginStateProvider).loginEnum == LoginStateEnum.waiting)
                       const Padding(
                         padding: EdgeInsets.only(left: Pad.small),
                         child: SizedBox(
@@ -50,7 +52,7 @@ class LoginButtons extends StatelessWidget {
         ),
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => ref.read(pageStateProvider.notifier).state = Pages.register,
+            onTap: () => isLogin ? ref.read(pageStateProvider.notifier).state = Pages.register : requestRegistration(ref),
             child: child,
           ),
           child: Container(

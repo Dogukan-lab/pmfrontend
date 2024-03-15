@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/states/login_state.dart';
 import 'package:pmfrontend/widgets/login/login_buttons.dart';
 import 'package:pmfrontend/widgets/login/login_inputs.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({
+    super.key,
+    required this.background,
+    required this.inputs,
+    required this.errorCheck,
+    this.isLogin = true,
+  });
+
+  final String background;
+  final LoginInputs inputs;
+  final bool Function(WidgetRef ref) errorCheck;
+  final bool isLogin;
 
   /*
   Stack
@@ -27,7 +37,7 @@ class LoginPage extends StatelessWidget {
         Stack(
           children: [
             Image.asset(
-              'backgrounds/login_background.png',
+              background,
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
@@ -77,21 +87,21 @@ class LoginPage extends StatelessWidget {
                     ),
 
                     //Input
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: Pad.large),
-                      child: LoginInputs(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: Pad.large),
+                      child: inputs,
                     ),
 
                     //Buttons
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: Pad.large, vertical: Pad.mediumPlus),
-                      child: LoginButtons(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: Pad.large, vertical: Pad.mediumPlus),
+                      child: LoginButtons(isLogin: isLogin),
                     ),
 
                     //Error message
                     Consumer(
                       builder: (_, ref, child) {
-                        return ref.watch(loginStateProvider).loginEnum == LoginStateEnum.incorrect ? child! : const SizedBox.shrink();
+                        return errorCheck(ref) ? child! : const SizedBox.shrink();
                       },
                       child: Text(
                         'Username or password incorrect',
