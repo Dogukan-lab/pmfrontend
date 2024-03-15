@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/widgets/login/login_buttons.dart';
 import 'package:pmfrontend/widgets/login/login_inputs.dart';
 
 class LoginPage extends StatelessWidget {
@@ -62,25 +63,36 @@ class LoginPage extends StatelessWidget {
                       Color.fromARGB(143, 74, 74, 74),
                       Color.fromARGB(18, 95, 95, 95),
                     ],
-                    // stops: [0.0, 0.6233, 0.7027, 0.8752, 1.0], //better?
                     stops: [0.0, 0.6233, 0.9027, 0.9752, 1.0],
                   ),
                 ),
                 child: Column(
                   children: [
+                    //Header
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: Pad.large),
                       child: Text(
                         'Pale Messenger',
-                        style: Fonts.trajan.copyWith(fontSize: 30),
+                        style: Fonts.trajan.copyWith(fontSize: 42.5),
                       ),
                     ),
-                    const LoginInputs(),
+
+                    //Input
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Pad.large),
+                      child: LoginInputs(),
+                    ),
+
+                    //Buttons
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: Pad.large, vertical: Pad.mediumPlus),
+                      child: LoginButtons(),
+                    ),
                   ],
                 ),
               ),
             ),
-            const Expanded(flex: 5, child: SizedBox.shrink())
+            const Expanded(flex: 4, child: SizedBox.shrink())
           ],
         ),
       ],

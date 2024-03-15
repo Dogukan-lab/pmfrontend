@@ -14,71 +14,80 @@ class _LoginInputsState extends State<LoginInputs> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Pad.medium),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          //Username Header
-          const SizedBox(
-            width: double.infinity,
-            child: Text(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        //Username Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
               'Username',
               style: Fonts.trajan,
             ),
-          ),
-
-          //Username Field
-          Container(
-            height: Sizes.small,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(Radii.small),
+            Text(
+              'Username unknown',
+              style: Fonts.trajan.copyWith(color: Cols.red),
             ),
-            child: TextField(
-              controller: _usernameController,
-              style: Fonts.ggGrey,
-              cursorColor: Cols.darkGrey,
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-                border: InputBorder.none,
-              ),
+          ],
+        ),
+
+        //Username Field
+        Container(
+          height: Sizes.small,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(Radii.small),
+          ),
+          child: TextField(
+            controller: _usernameController,
+            style: Fonts.ggGrey,
+            cursorColor: Cols.darkGrey,
+            decoration: const InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+              border: InputBorder.none,
             ),
           ),
+        ),
 
-          //Spacer
-          const SizedBox(height: Pad.medium),
+        //Spacer
+        const SizedBox(height: Pad.medium),
 
-          //Password Header
-          const SizedBox(
-            width: double.infinity,
-            child: Text(
-              'Username',
+        //Password Header
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Password',
               style: Fonts.trajan,
             ),
-          ),
+            Text(
+              'Password incorrect',
+              style: Fonts.trajan.copyWith(color: Cols.red),
+            ),
+          ],
+        ),
 
-          //Password Field
-          Container(
-            height: Sizes.small,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(Radii.small),
-            ),
-            child: TextField(
-              controller: _passwordController,
-              style: Fonts.ggGrey,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-              ),
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-            ),
+        //Password Field
+        Container(
+          height: Sizes.small,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(Radii.small),
           ),
-        ],
-      ),
+          child: TextField(
+            controller: _passwordController,
+            style: Fonts.ggGrey,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+            ),
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+          ),
+        ),
+      ],
     );
   }
 }
