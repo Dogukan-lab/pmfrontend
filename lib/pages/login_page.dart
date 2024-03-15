@@ -94,7 +94,7 @@ class LoginPage extends StatelessWidget {
                     //Error message
                     Consumer(
                       builder: (_, ref, child) {
-                        return ref.watch(loginStateProvider) == LoginState.incorrect ? child! : const SizedBox.shrink();
+                        return ref.watch(loginStateProvider).loginEnum == LoginStateEnum.incorrect ? child! : const SizedBox.shrink();
                       },
                       child: Text(
                         'Username or password incorrect',

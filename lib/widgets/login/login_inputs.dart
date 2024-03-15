@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/states/login_state.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({super.key});
@@ -33,13 +35,16 @@ class _LoginInputsState extends State<LoginInputs> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(Radii.small),
           ),
-          child: TextField(
-            controller: _usernameController,
-            style: Fonts.ggGrey,
-            cursorColor: Cols.darkGrey,
-            decoration: const InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-              border: InputBorder.none,
+          child: Consumer(
+            builder: (_, ref, child) => TextField(
+              controller: _usernameController,
+              onChanged: (value) => ref.read(loginStateProvider.notifier).changeUsername(_usernameController.text),
+              style: Fonts.ggGrey,
+              cursorColor: Cols.darkGrey,
+              decoration: const InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+                border: InputBorder.none,
+              ),
             ),
           ),
         ),
@@ -63,16 +68,19 @@ class _LoginInputsState extends State<LoginInputs> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(Radii.small),
           ),
-          child: TextField(
-            controller: _passwordController,
-            style: Fonts.ggGrey,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+          child: Consumer(
+            builder: (_, ref, child) => TextField(
+              controller: _passwordController,
+              onChanged: (value) => ref.read(loginStateProvider.notifier).changePassword(_passwordController.text),
+              style: Fonts.ggGrey,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
+              ),
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
             ),
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
           ),
         ),
       ],
