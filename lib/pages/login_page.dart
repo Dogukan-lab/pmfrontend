@@ -32,20 +32,17 @@ class LoginPage extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
             ),
-            Transform(
+            Container(
               transform: Matrix4.identity()..scale(2.0, 1.0),
-              alignment: Alignment.center,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      const Color.fromARGB(90, 226, 149, 93),
-                      Colors.black.withOpacity(0.5),
-                    ],
-                    stops: const [0.5, 1.0],
-                    center: Alignment.center,
-                    radius: 0.5,
-                  ),
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    const Color.fromARGB(90, 226, 149, 93),
+                    Colors.black.withOpacity(0.5),
+                  ],
+                  stops: const [0.5, 1.0],
+                  center: Alignment.center,
+                  radius: 0.5,
                 ),
               ),
             ),

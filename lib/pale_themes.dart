@@ -40,6 +40,7 @@ class Pad {
 
 //Sizes
 class Sizes {
+  static const double smallMinus = 20;
   static const double small = 50;
   static const double medium = 100;
   static const double large = 200;
