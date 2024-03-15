@@ -23,3 +23,14 @@ flutter:
     - family: TrajanPro
       fonts:
         - asset: assets/fonts/TrajanPro-Regular.ttf
+    - family: gg_sans
+      fonts:
+        - asset: assets/fonts/gg_sans_regular.ttf
+          weight: 400
+        - asset: assets/fonts/gg_sans_medium.ttf
+          weight: 500
+        - asset: assets/fonts/gg_sans_semibold.ttf
+          weight: 600
+        - asset: assets/fonts/gg_sans_bold.ttf
+          weight: 700
+          

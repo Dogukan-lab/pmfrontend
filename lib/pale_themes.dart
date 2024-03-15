@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
+//Colors
+class Cols {
+  static const Color darkGrey = Color.fromARGB(255, 107, 107, 107);
+}
+
 //Text Themes
 class Fonts {
   static const TextStyle trajan = TextStyle(
-    color: Colors.white,
     fontFamily: 'TrajanPro',
+    color: Colors.white,
   );
+
+  static const TextStyle gg = TextStyle(
+    fontFamily: 'gg_sans',
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle ggGrey = gg.copyWith(color: Cols.darkGrey);
 }
 
 //Radii

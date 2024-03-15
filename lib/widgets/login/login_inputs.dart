@@ -32,12 +32,13 @@ class _LoginInputsState extends State<LoginInputs> {
           Container(
             height: Sizes.small,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 238, 238, 238),
+              color: Colors.white,
               borderRadius: BorderRadius.circular(Radii.small),
             ),
             child: TextField(
               controller: _usernameController,
-              //textstyle
+              style: Fonts.ggGrey,
+              cursorColor: Cols.darkGrey,
               decoration: const InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
                 border: InputBorder.none,
@@ -61,12 +62,12 @@ class _LoginInputsState extends State<LoginInputs> {
           Container(
             height: Sizes.small,
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 238, 238, 238),
+              color: Colors.white,
               borderRadius: BorderRadius.circular(Radii.small),
             ),
             child: TextField(
               controller: _passwordController,
-              //textstyle
+              style: Fonts.ggGrey,
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
