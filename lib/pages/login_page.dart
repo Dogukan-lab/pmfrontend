@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pmfrontend/pale_themes.dart';
 import 'package:pmfrontend/widgets/login/login_inputs.dart';
 
 class LoginPage extends StatelessWidget {
@@ -57,7 +58,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text(
                       'Pale Messenger',
-                      style: TextStyle(color: Colors.white),
+                      style: trajan,
                     ),
                     LoginInputs(),
                   ],
