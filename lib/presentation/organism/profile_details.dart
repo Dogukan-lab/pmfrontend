@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
 
-class FriendsList extends StatelessWidget {
-  const FriendsList({super.key});
+class ProfileDetails extends StatelessWidget {
+  const ProfileDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

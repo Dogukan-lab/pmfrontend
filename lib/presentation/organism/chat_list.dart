@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});

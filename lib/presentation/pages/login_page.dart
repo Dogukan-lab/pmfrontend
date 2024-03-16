@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/widgets/login/login_buttons.dart';
-import 'package:pmfrontend/widgets/login/login_inputs.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/molecule/login/login_buttons.dart';
+import 'package:pmfrontend/presentation/molecule/login/login_inputs.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
@@ -42,17 +43,21 @@ class LoginPage extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
             ),
-            Container(
+            Transform(
               transform: Matrix4.identity()..scale(2.0, 1.0),
-              decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  colors: [
-                    const Color.fromARGB(90, 226, 149, 93),
-                    Colors.black.withOpacity(0.5),
-                  ],
-                  stops: const [0.5, 1.0],
-                  center: Alignment.center,
-                  radius: 0.5,
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [
+                      const Color.fromARGB(45, 226, 149, 93),
+                      Colors.black.withOpacity(0.5),
+                      // Colors.red.withOpacity(1),
+                    ],
+                    stops: const [0.5, 1.0],
+                    center: Alignment.center,
+                    radius: 1.0,
+                  ),
                 ),
               ),
             ),

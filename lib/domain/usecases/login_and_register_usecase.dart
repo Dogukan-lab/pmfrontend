@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/DTOs/pm_user.dart';
-import 'package:pmfrontend/repositories/server_handler.dart';
-import 'package:pmfrontend/states/login_state.dart';
-import 'package:pmfrontend/states/page_state.dart';
-import 'package:pmfrontend/states/register_state.dart';
+import 'package:pmfrontend/data/DTOs/pm_user.dart';
+import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/presentation/states/login_state.dart';
+import 'package:pmfrontend/presentation/states/page_state.dart';
+import 'package:pmfrontend/presentation/states/register_state.dart';
 
 void requestLogin(WidgetRef ref) async {
   final loginNotifier = ref.read(loginProvider.notifier);

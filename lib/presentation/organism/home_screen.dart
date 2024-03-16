@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +10,11 @@ class ChatScreen extends StatelessWidget {
       children: [
         Container(
           height: Sizes.smallPlus,
-          color: Cols.grey54,
+          color: Cols.grey38,
         ),
         Expanded(
           child: Container(
-            color: Cols.grey64,
+            color: Cols.grey33,
           ),
         ),
       ],

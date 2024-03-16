@@ -27,6 +27,8 @@ class Fonts {
   );
 
   static TextStyle ggGrey = gg.copyWith(color: Cols.grey107);
+
+  static const TextStyle header = TextStyle();
 }
 
 //Radii

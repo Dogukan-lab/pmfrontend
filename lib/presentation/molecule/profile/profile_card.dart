@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pmfrontend/widgets/profile/profile_picture.dart';
+import 'package:pmfrontend/presentation/molecule/profile/profile_picture.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -16,9 +16,7 @@ class ProfileCard extends StatelessWidget {
       child: Container(
         height: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: roundedRadius != null
-              ? BorderRadius.all(Radius.circular(roundedRadius!))
-              : BorderRadius.zero,
+          borderRadius: roundedRadius != null ? BorderRadius.all(Radius.circular(roundedRadius!)) : BorderRadius.zero,
           color: const Color.fromARGB(255, 221, 220, 220),
         ),
         child: const Row(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/states/login_state.dart';
-import 'package:pmfrontend/states/page_state.dart';
-import 'package:pmfrontend/usecases/login_and_register_usecase.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/states/login_state.dart';
+import 'package:pmfrontend/presentation/states/page_state.dart';
+import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
 
 class LoginButtons extends StatelessWidget {
   const LoginButtons({super.key, this.isLogin = true});

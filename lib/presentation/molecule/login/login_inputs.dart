@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({

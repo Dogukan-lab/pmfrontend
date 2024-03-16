@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/pale_themes.dart';
-import 'package:pmfrontend/widgets/home/chat_list.dart';
-import 'package:pmfrontend/widgets/home/friends_list.dart';
-import 'package:pmfrontend/widgets/home/home_screen.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/organism/chat_list.dart';
+import 'package:pmfrontend/presentation/organism/friends_list.dart';
+import 'package:pmfrontend/presentation/organism/home_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

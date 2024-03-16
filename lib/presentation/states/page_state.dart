@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/states/login_state.dart';
-import 'package:pmfrontend/states/register_state.dart';
+import 'package:pmfrontend/presentation/states/login_state.dart';
+import 'package:pmfrontend/presentation/states/register_state.dart';
 
 enum Pages {
   login,

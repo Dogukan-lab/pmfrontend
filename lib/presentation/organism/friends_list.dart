@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/pale_themes.dart';
+import 'package:pmfrontend/presentation/pale_themes.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class FriendsList extends StatelessWidget {
+  const FriendsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +10,11 @@ class HomeScreen extends StatelessWidget {
       children: [
         Container(
           height: Sizes.smallPlus,
-          color: Cols.grey38,
+          color: Cols.grey29,
         ),
         Expanded(
           child: Container(
-            color: Cols.grey33,
+            color: Cols.grey22,
           ),
         ),
       ],
