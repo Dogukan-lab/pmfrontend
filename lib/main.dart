@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/pages/home_page.dart';
@@ -16,6 +18,9 @@ void main() {
         title: 'Pale Messenger',
         theme: ThemeData(
           useMaterial3: true,
+        ),
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown},
         ),
         home: Scaffold(
           body: Consumer(

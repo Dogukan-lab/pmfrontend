@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -8,13 +9,10 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: Sizes.smallPlus,
-          color: Cols.grey54,
-        ),
+        const HomePageHeader('Username', Cols.grey38),
         Expanded(
           child: Container(
-            color: Cols.grey64,
+            color: Cols.grey33,
           ),
         ),
       ],
