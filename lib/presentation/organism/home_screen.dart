@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,10 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: Sizes.smallPlus,
-          color: Cols.grey38,
-        ),
+        const HomePageHeader('Hallownest', Cols.grey38),
         Expanded(
           child: Container(
             color: Cols.grey33,

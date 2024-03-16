@@ -30,7 +30,7 @@ class LoginButtons extends StatelessWidget {
                   children: [
                     Text(
                       isLogin ? 'Login' : 'back',
-                      style: Fonts.trajan,
+                      style: Styles.trajan,
                     ),
                     if (isLogin && ref.watch(loginProvider).loginEnum == LoginStateEnum.waiting)
                       const Padding(
@@ -65,7 +65,7 @@ class LoginButtons extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: Pad.smallPlus, vertical: Pad.smallMinus),
               child: Text(
                 'Register',
-                style: Fonts.trajan,
+                style: Styles.trajan,
               ),
             ),
           ),

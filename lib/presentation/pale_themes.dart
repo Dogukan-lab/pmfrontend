@@ -13,7 +13,7 @@ class Cols {
 }
 
 //Text Themes
-class Fonts {
+class Styles {
   static const TextStyle trajan = TextStyle(
     fontFamily: 'TrajanPro',
     fontSize: 15,
@@ -28,7 +28,7 @@ class Fonts {
 
   static TextStyle ggGrey = gg.copyWith(color: Cols.grey107);
 
-  static const TextStyle header = TextStyle();
+  static TextStyle header = trajan.copyWith(fontSize: 30);
 }
 
 //Radii

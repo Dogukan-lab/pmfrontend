@@ -37,7 +37,7 @@ class _LoginInputsState extends State<LoginInputs> {
           width: double.infinity,
           child: Text(
             'Username',
-            style: Fonts.trajan,
+            style: Styles.trajan,
           ),
         ),
 
@@ -57,7 +57,7 @@ class _LoginInputsState extends State<LoginInputs> {
                   widget.usernameChange(ref, _usernameController.text);
                   widget.usernameSubmit(ref);
                 },
-                style: Fonts.ggGrey,
+                style: Styles.ggGrey,
                 cursorColor: Cols.grey107,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
@@ -76,7 +76,7 @@ class _LoginInputsState extends State<LoginInputs> {
           width: double.infinity,
           child: Text(
             'Password',
-            style: Fonts.trajan,
+            style: Styles.trajan,
           ),
         ),
 
@@ -96,7 +96,7 @@ class _LoginInputsState extends State<LoginInputs> {
                   widget.passwordChange(ref, _passwordController.text);
                   widget.passwordSubmit(ref);
                 },
-                style: Fonts.ggGrey,
+                style: Styles.ggGrey,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
