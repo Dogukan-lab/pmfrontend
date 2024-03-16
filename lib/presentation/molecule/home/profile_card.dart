@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pmfrontend/data/repositories/icon_repository.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -21,10 +22,10 @@ class ProfileCard extends StatelessWidget {
 
     return Row(
       children: [
-        Container(
+        Image.asset(
+          iconRepository.getIcon(icon % amountOfIcons),
           width: height,
           height: height,
-          color: Colors.primaries[icon % Colors.primaries.length],
         ),
         Padding(
           padding: const EdgeInsets.only(left: Pad.small),
