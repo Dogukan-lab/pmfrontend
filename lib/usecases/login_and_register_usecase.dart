@@ -5,11 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/DTOs/pm_user.dart';
 import 'package:pmfrontend/repositories/server_handler.dart';
 import 'package:pmfrontend/states/login_state.dart';
+import 'package:pmfrontend/states/page_state.dart';
 import 'package:pmfrontend/states/register_state.dart';
 
 void requestLogin(WidgetRef ref) async {
-  final loginNotifier = ref.read(loginStateProvider.notifier);
-  final loginState = ref.read(loginStateProvider);
+  final loginNotifier = ref.read(loginProvider.notifier);
+  final loginState = ref.read(loginProvider);
 
   loginNotifier.changeEnum(LoginStateEnum.waiting);
 
@@ -22,15 +23,15 @@ void requestLogin(WidgetRef ref) async {
   );
 
   if (response != null && response.statusCode == HttpStatus.ok) {
-    print('TO HOME PAGE');
-    loginNotifier.changeEnum(LoginStateEnum.none);
-  } else
+    ref.read(pageProvider.notifier).setPage(ref, Pages.home);
+  } else {
     loginNotifier.changeEnum(LoginStateEnum.incorrect);
+  }
 }
 
 void requestRegistration(WidgetRef ref) async {
-  final registerNotifier = ref.read(registerStateProvider.notifier);
-  final registerState = ref.read(registerStateProvider);
+  // final registerNotifier = ref.read(registerStateProvider.notifier);
+  final registerState = ref.read(registerProvider);
 
   print(registerState.username);
   print(registerState.password);

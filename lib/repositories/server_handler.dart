@@ -9,7 +9,7 @@ Future<http.Response?> serverRequest(String request, String? params) async {
     );
     return response;
   } on http.ClientException catch (e) {
-    print(e.message);
+    print('Server Handler: ${e.message}');
     return null;
   }
 }

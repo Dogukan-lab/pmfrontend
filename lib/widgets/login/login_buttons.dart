@@ -17,10 +17,10 @@ class LoginButtons extends StatelessWidget {
       children: [
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => isLogin ? requestLogin(ref) : ref.read(pageStateProvider.notifier).state = Pages.login,
+            onTap: () => isLogin ? requestLogin(ref) : ref.read(pageProvider.notifier).setPage(ref, Pages.login),
             child: Container(
               decoration: BoxDecoration(
-                color: Cols.darkGrey,
+                color: Cols.grey107,
                 borderRadius: BorderRadius.circular(Radii.small),
                 border: Border.all(color: Colors.black, width: 0.5),
               ),
@@ -32,7 +32,7 @@ class LoginButtons extends StatelessWidget {
                       isLogin ? 'Login' : 'back',
                       style: Fonts.trajan,
                     ),
-                    if (isLogin && ref.watch(loginStateProvider).loginEnum == LoginStateEnum.waiting)
+                    if (isLogin && ref.watch(loginProvider).loginEnum == LoginStateEnum.waiting)
                       const Padding(
                         padding: EdgeInsets.only(left: Pad.small),
                         child: SizedBox(
@@ -52,12 +52,12 @@ class LoginButtons extends StatelessWidget {
         ),
         Consumer(
           builder: (_, ref, child) => GestureDetector(
-            onTap: () => isLogin ? ref.read(pageStateProvider.notifier).state = Pages.register : requestRegistration(ref),
+            onTap: () => isLogin ? ref.read(pageProvider.notifier).setPage(ref, Pages.register) : requestRegistration(ref),
             child: child,
           ),
           child: Container(
             decoration: BoxDecoration(
-              color: Cols.darkGrey,
+              color: Cols.grey107,
               borderRadius: BorderRadius.circular(Radii.small),
               border: Border.all(color: Colors.black, width: 0.5),
             ),

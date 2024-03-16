@@ -24,14 +24,15 @@ class RegisterState {
       );
 }
 
-class RegisterStateNotifier extends StateNotifier<RegisterState> {
-  RegisterStateNotifier() : super(RegisterState());
+class RegisterNotifier extends StateNotifier<RegisterState> {
+  RegisterNotifier() : super(RegisterState());
 
   void changeUsername(String user) => state = state.copyWith(user: user);
   void changePassword(String pass) => state = state.copyWith(pass: pass);
   void changeEnum(RegisterStateEnum stateEnum) => state = state.copyWith(stateEnum: stateEnum);
+  void clear() => state = RegisterState();
 }
 
-final registerStateProvider = StateNotifierProvider<RegisterStateNotifier, RegisterState>(
-  (ref) => RegisterStateNotifier(),
+final registerProvider = StateNotifierProvider<RegisterNotifier, RegisterState>(
+  (ref) => RegisterNotifier(),
 );

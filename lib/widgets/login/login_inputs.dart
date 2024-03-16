@@ -58,7 +58,7 @@ class _LoginInputsState extends State<LoginInputs> {
                   widget.usernameSubmit(ref);
                 },
                 style: Fonts.ggGrey,
-                cursorColor: Cols.darkGrey,
+                cursorColor: Cols.grey107,
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
                   border: InputBorder.none,

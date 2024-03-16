@@ -100,9 +100,7 @@ class LoginPage extends StatelessWidget {
 
                     //Error message
                     Consumer(
-                      builder: (_, ref, child) {
-                        return errorCheck(ref) ? child! : const SizedBox.shrink();
-                      },
+                      builder: (_, ref, child) => errorCheck(ref) ? child! : const SizedBox.shrink(),
                       child: Text(
                         'Username or password incorrect',
                         style: Fonts.trajan.copyWith(color: Cols.red),

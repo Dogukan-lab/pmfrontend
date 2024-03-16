@@ -24,14 +24,15 @@ class LoginState {
       );
 }
 
-class LoginStateNotifier extends StateNotifier<LoginState> {
-  LoginStateNotifier() : super(LoginState());
+class LoginNotifier extends StateNotifier<LoginState> {
+  LoginNotifier() : super(LoginState());
 
   void changeUsername(String user) => state = state.copyWith(user: user);
   void changePassword(String pass) => state = state.copyWith(pass: pass);
   void changeEnum(LoginStateEnum stateEnum) => state = state.copyWith(stateEnum: stateEnum);
+  void clear() => state = LoginState();
 }
 
-final loginStateProvider = StateNotifierProvider<LoginStateNotifier, LoginState>(
-  (ref) => LoginStateNotifier(),
+final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>(
+  (ref) => LoginNotifier(),
 );
