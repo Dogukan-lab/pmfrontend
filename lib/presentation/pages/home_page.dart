@@ -19,48 +19,56 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('building home (check if this gets constantly called), remove when done debugging');
     startupProcedure(ref);
 
-    return Container(
-      color: Cols.grey22,
-      child: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Consumer(
-              builder: (_, ref, child) {
-                final state = ref.watch(settingsState);
-
-                return Column(
+    return Stack(
+      children: [
+        //Content
+        Container(
+          color: Cols.grey22,
+          child: Row(
+            children: [
+              const Expanded(
+                flex: 2,
+                child: Column(
                   children: [
-                    state ? const Settings() : const ChatList(),
-                    child!,
+                    ChatList(),
+                    OwnProfileCard(),
                   ],
-                );
-              },
-              child: const OwnProfileCard(),
-            ),
-          ),
-          Expanded(
-            flex: 7,
-            child: Consumer(
-              builder: (_, ref, __) {
-                final state = false; // Check if chat is selected DELETE DART IGNORES
+                ),
+              ),
+              Expanded(
+                flex: 7,
+                child: Consumer(
+                  builder: (_, ref, __) {
+                    final state = false; // Check if chat is selected DELETE DART IGNORES
 
-                return state
-                    ? const Row(
-                        children: [
-                          ChatScreen(),
-                          ProfileDetails(),
-                        ],
-                      )
-                    : const HomeScreen();
-              },
-            ),
+                    return state
+                        ? const Row(
+                            children: [
+                              ChatScreen(),
+                              ProfileDetails(),
+                            ],
+                          )
+                        : const HomeScreen();
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+
+        //Settings
+        Container(
+          color: Cols.grey22.withAlpha(225),
+          child: Consumer(
+            builder: (_, ref, child) {
+              final state = ref.watch(settingsState);
+              return state ? const Settings() : const SizedBox.shrink();
+            },
+          ),
+        )
+      ],
     );
   }
 

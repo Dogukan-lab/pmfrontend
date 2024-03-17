@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
+import 'package:pmfrontend/presentation/organisms/left/settings.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/profile_state.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-final settingsState = StateProvider<bool>((ref) => false);
 
 class OwnProfileCard extends StatelessWidget {
   const OwnProfileCard({super.key});
