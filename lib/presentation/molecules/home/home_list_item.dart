@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
 import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/states/profile_state.dart';
 
 class HomeListItem extends StatelessWidget {
   const HomeListItem({super.key, required this.user, this.isLast = false});
@@ -28,19 +30,32 @@ class HomeListItem extends StatelessWidget {
                   icon: user.icon,
                   online: user.online,
                 ),
-                const Row(
+                Row(
                   children: [
-                    CustomIconButton(
+                    const CustomIconButton(
                       FontAwesomeIcons.message,
                       iconSize: Pad.mediumPlus,
                     ),
-                    SizedBox(width: Pad.medium),
-                    CustomIconButton(
-                      FontAwesomeIcons.ellipsisVertical,
-                      iconSize: Pad.mediumPlus,
+                    const SizedBox(width: Pad.medium),
+                    Consumer(
+                      builder: (_, ref, __) {
+                        final isFriend = ref.read(profileProvider).friends.indexWhere(
+                                  (other) => other.username == user.username,
+                                ) !=
+                            -1;
+                        final profile = ref.read(profileProvider.notifier);
+
+                        return GestureDetector(
+                          onTap: () => isFriend ? profile.removeFriend(user) : profile.addFriend(user),
+                          child: CustomIconButton(
+                            isFriend ? FontAwesomeIcons.minus : FontAwesomeIcons.plus,
+                            iconSize: Pad.mediumPlus,
+                          ),
+                        );
+                      },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

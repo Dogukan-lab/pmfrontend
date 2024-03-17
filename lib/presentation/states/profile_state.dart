@@ -38,6 +38,10 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
   }
 
   void addFriend(Profile friend) => state = state.copyWith(friends: state.friends + [friend]);
+
+  void removeFriend(Profile friend) => state = state.copyWith(
+        friends: state.friends.where((user) => user.username != friend.username).toList(),
+      );
 }
 
 final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((ref) => ProfileNotifier());

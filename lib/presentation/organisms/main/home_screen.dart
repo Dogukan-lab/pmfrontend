@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          //List
+          //Content
           Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -67,6 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     return false;
                   });
+
+                  //Sorting
+                  friends.sort((a, b) => a.username.compareTo(b.username));
+                  online.sort((a, b) => a.username.compareTo(b.username));
 
                   //Searching
                   friends.retainWhere((user) => user.username.contains(_searchTarget));
