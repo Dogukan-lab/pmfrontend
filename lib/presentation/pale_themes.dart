@@ -6,8 +6,10 @@ class Cols {
   static const Color grey29 = Color.fromARGB(255, 29, 29, 29);
   static const Color grey33 = Color.fromARGB(255, 33, 33, 33);
   static const Color grey38 = Color.fromARGB(255, 38, 38, 38);
+  static const Color grey48 = Color.fromARGB(255, 48, 48, 48);
   static const Color grey107 = Color.fromARGB(255, 107, 107, 107);
   static const Color red = Color.fromARGB(255, 176, 28, 17);
+  static const Color green = Color.fromARGB(255, 17, 176, 54);
 }
 
 //Text Themes

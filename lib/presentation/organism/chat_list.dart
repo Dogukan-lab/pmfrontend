@@ -23,7 +23,7 @@ class ChatList extends StatelessWidget {
                   for (int i = 0; i < 30; i++)
                     Padding(
                       padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
-                      child: ProfileCard(name: 'Heirloomless', text: 'This is the bio', icon: i),
+                      child: ProfileCard(name: 'Heirloomless', text: 'This is the bio', icon: i, online: i % 2 == 0),
                     ),
                 ],
               ),
