@@ -20,8 +20,6 @@ class Settings extends StatelessWidget {
               color: Cols.green,
             ),
           ),
-
-          //Profile Card
         ],
       ),
     );

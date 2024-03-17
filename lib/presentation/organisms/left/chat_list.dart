@@ -43,8 +43,6 @@ class ChatList extends StatelessWidget {
               ),
             ),
           ),
-
-          //Profile Card
         ],
       ),
     );
