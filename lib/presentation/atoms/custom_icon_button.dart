@@ -11,12 +11,14 @@ class CustomIconButton extends StatelessWidget {
     this.angle = 0,
     this.size = Sizes.smallPlus,
     this.iconSize = Sizes.small,
+    this.background = Cols.grey107,
   });
 
   final IconData data;
   final double angle;
   final double size;
   final double iconSize;
+  final Color background;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class CustomIconButton extends StatelessWidget {
             color: Cols.grey48,
             width: 3,
           ),
-          color: Cols.grey107,
+          color: background,
         ),
         child: FaIcon(
           data,
