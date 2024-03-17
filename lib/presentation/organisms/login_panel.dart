@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/molecule/login/login_inputs.dart';
+import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/molecule/login/login_buttons.dart';
+import 'package:pmfrontend/presentation/molecules/login/login_buttons.dart';
 
 class LoginPanel extends StatelessWidget {
   const LoginPanel({

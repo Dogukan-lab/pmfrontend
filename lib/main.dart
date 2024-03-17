@@ -7,7 +7,7 @@ import 'package:pmfrontend/presentation/pages/login_page.dart';
 import 'package:pmfrontend/presentation/states/login_state.dart';
 import 'package:pmfrontend/presentation/states/page_state.dart';
 import 'package:pmfrontend/presentation/states/register_state.dart';
-import 'package:pmfrontend/presentation/molecule/login/login_inputs.dart';
+import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
 
 void main() {

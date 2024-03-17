@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pmfrontend/presentation/molecule/profile/profile_picture.dart';
+import 'package:pmfrontend/presentation/molecules/profile/profile_picture.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({

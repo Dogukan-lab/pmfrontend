@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/molecule/login/login_inputs.dart';
-import 'package:pmfrontend/presentation/organism/login_panel.dart';
+import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
+import 'package:pmfrontend/presentation/organisms/login_panel.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({
