@@ -9,5 +9,11 @@ void getChatList(WidgetRef ref) async {
     const Profile('Heirloomless', '', 5, false): 'chatlog 1',
     const Profile('LarsingDash', '', 4, true): 'chatlog 2',
     const Profile('Owon', '', 0, false): 'chatlog 3',
+    const Profile('Owon', '.', 0, false): 'chatlog 3',
+    const Profile('Owon', '..', 0, false): 'chatlog 3',
+    const Profile('Owon', '...', 0, false): 'chatlog 3',
+    const Profile('Owon', '....', 0, false): 'chatlog 3',
+    const Profile('Owon', '.....', 0, false): 'chatlog 3',
+    const Profile('Owon', '......', 0, false): 'chatlog 3',
   });
 }

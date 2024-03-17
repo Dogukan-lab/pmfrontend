@@ -51,7 +51,7 @@ class ProfileCard extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(height),
                 backgroundBlendMode: BlendMode.src,
-                color: online ? Cols.green : Cols.red,
+                color: online ? Cols.green : Cols.grey107,
               ),
               width: Pad.smallPlus,
               height: Pad.smallPlus,

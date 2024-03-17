@@ -13,37 +13,37 @@ class ChatList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //Header
         const HomePageHeader('Chats', Cols.grey29),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            color: Cols.grey22,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Consumer(
-                builder: (_, ref, __) {
-                  // Future(() => {getChatList(ref)}); //DEBUGING
-                  var state = ref.watch(chatListState);
 
-                  return Column(
-                    children: [
-                      for (final chat in state.entries)
-                        Padding(
-                          padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
-                          child: ProfileCard(
-                            name: chat.key.username,
-                            text: chat.value,
-                            icon: chat.key.icon,
-                            online: chat.key.online,
-                          ),
+        //List
+        Expanded(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Consumer(
+              builder: (_, ref, __) {
+                var state = ref.watch(chatListState);
+
+                return Column(
+                  children: [
+                    for (final chat in state.entries)
+                      Padding(
+                        padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
+                        child: ProfileCard(
+                          name: chat.key.username,
+                          text: chat.value,
+                          icon: chat.key.icon,
+                          online: chat.key.online,
                         ),
-                    ],
-                  );
-                },
-              ),
+                      ),
+                  ],
+                );
+              },
             ),
           ),
         ),
+
+        //Profile Card
         Container(
           height: Sizes.medium,
           color: Cols.grey29,
