@@ -5,24 +5,33 @@ class ProfileState {
   ProfileState({
     required this.profile,
     required this.background,
+    required this.friends,
   });
 
   final Profile profile;
   final int background;
+  final List<Profile> friends;
 
   ProfileState copyWith({
     Profile? profile,
     int? background,
+    List<Profile>? friends,
   }) {
     return ProfileState(
       profile: profile ?? this.profile,
       background: background ?? this.background,
+      friends: friends ?? this.friends,
     );
   }
 }
 
 class ProfileNotifier extends StateNotifier<ProfileState> {
-  ProfileNotifier() : super(ProfileState(profile: const Profile.empty('...'), background: 0));
+  ProfileNotifier()
+      : super(ProfileState(
+          profile: const Profile.empty('...'),
+          background: 0,
+          friends: [],
+        ));
 
   void loadProfile(ProfileState profile) {
     state = profile;

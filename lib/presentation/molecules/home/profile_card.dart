@@ -6,9 +6,9 @@ import 'package:pmfrontend/presentation/pale_themes.dart';
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
     super.key,
-    required this.icon,
     required this.name,
     required this.text,
+    required this.icon,
     required this.online,
     this.size = Sizes.smallPlus,
   });
