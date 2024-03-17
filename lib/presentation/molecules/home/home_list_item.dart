@@ -6,6 +6,7 @@ import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/states/chat_list_state.dart';
 import 'package:pmfrontend/presentation/states/profile_state.dart';
 
 class HomeListItem extends StatelessWidget {
@@ -26,26 +27,32 @@ class HomeListItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: HoverWidget(
-                    builder: (isHovering) => Container(
-                      decoration: BoxDecoration(
-                        color: isHovering ? Cols.grey38 : Colors.transparent,
-                        borderRadius: BorderRadius.circular(Pad.mediumPlus),
+                    builder: (isHovering) => Consumer(
+                      builder: (_, ref, child) => GestureDetector(
+                        onTap: () => ref.read(chatListProvider.notifier).selectChat(user.username),
+                        child: child,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ProfileCard(
-                            name: user.username,
-                            text: user.status,
-                            icon: user.icon,
-                            online: user.online,
-                          ),
-                          CustomIconButton(
-                            FontAwesomeIcons.message,
-                            iconSize: Pad.mediumPlus,
-                            background: isHovering ? Cols.grey107 : Cols.grey75,
-                          ),
-                        ],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isHovering ? Cols.grey38 : Colors.transparent,
+                          borderRadius: BorderRadius.circular(Pad.mediumPlus),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ProfileCard(
+                              name: user.username,
+                              text: user.status,
+                              icon: user.icon,
+                              online: user.online,
+                            ),
+                            CustomIconButton(
+                              FontAwesomeIcons.message,
+                              iconSize: Pad.mediumPlus,
+                              background: isHovering ? Cols.grey107 : Cols.grey75,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

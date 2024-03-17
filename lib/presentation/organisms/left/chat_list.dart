@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
+import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat_list_state.dart';
@@ -23,18 +23,37 @@ class ChatList extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Consumer(
                 builder: (_, ref, __) {
-                  var state = ref.watch(chatListState);
+                  var state = ref.watch(chatListProvider);
+                  var notifier = ref.read(chatListProvider.notifier);
 
                   return Column(
                     children: [
-                      for (final chat in state.entries)
-                        Padding(
-                          padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
-                          child: ProfileCard(
-                            name: chat.key.username,
-                            text: chat.value,
-                            icon: chat.key.icon,
-                            online: chat.key.online,
+                      for (final chat in state.chats)
+                        HoverWidget(
+                          builder: (isHovering) => Padding(
+                            padding: const EdgeInsets.only(left: Pad.smallPlus, right: Pad.smallPlus, top: Pad.smallPlus),
+                            child: GestureDetector(
+                              onTap: () {
+                                final tapped = chat.profile.username;
+                                notifier.selectChat(state.selected == tapped ? null : tapped);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: state.selected == chat.profile.username
+                                      ? Cols.grey33
+                                      : isHovering
+                                          ? Cols.grey29
+                                          : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(Sizes.smallPlus),
+                                ),
+                                child: ProfileCard(
+                                  name: chat.profile.username,
+                                  text: chat.lastMessage,
+                                  icon: chat.profile.icon,
+                                  online: chat.profile.online,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                     ],
