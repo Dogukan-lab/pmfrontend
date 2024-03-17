@@ -22,20 +22,7 @@ class ChatListState {
 }
 
 class ChatListNotifier extends StateNotifier<ChatListState> {
-  ChatListNotifier() : super(_initialState());
-
-  static ChatListState _initialState() {
-    final now = DateTime.now();
-
-    return ChatListState(
-      [
-        ChatListEntry(const Profile.empty('.'), '.', now),
-        ChatListEntry(const Profile.empty('.'), '..', now),
-        ChatListEntry(const Profile.empty('.'), '...', now),
-      ],
-      null,
-    );
-  }
+  ChatListNotifier() : super(ChatListState([], null));
 
   void loadChats(List<ChatListEntry> chats) => state = ChatListState(chats, state.selected);
   void selectChat(Profile? profile, WidgetRef ref) {

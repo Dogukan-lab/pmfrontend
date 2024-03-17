@@ -59,6 +59,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   final friends = List<Profile>.from(ref.watch(profileProvider).friends);
                   final online = List<Profile>.from(ref.watch(onlineUsersProvider));
 
+                  //Loading
+                  if (online.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: Pad.medium),
+                      child: SizedBox(
+                        width: Sizes.smallPlus,
+                        height: Sizes.smallPlus,
+                        child: CircularProgressIndicator(
+                          color: Cols.grey75,
+                          strokeWidth: 7.5,
+                        ),
+                      ),
+                    );
+                  }
+
                   //Remove duplicates
                   online.removeWhere((user) {
                     for (var other in friends) {
@@ -73,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   online.sort((a, b) => a.username.compareTo(b.username));
 
                   //Searching
-                  friends.retainWhere((user) => user.username.contains(_searchTarget));
-                  online.retainWhere((user) => user.username.contains(_searchTarget));
+                  friends.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
+                  online.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
 
                   //List
                   return Padding(

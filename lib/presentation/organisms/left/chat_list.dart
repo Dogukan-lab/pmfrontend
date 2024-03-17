@@ -26,37 +26,54 @@ class ChatList extends StatelessWidget {
                   var state = ref.watch(chatListProvider);
                   var notifier = ref.read(chatListProvider.notifier);
 
+                  if (state.chats.isEmpty) {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: Pad.medium),
+                      child: SizedBox(
+                        width: Sizes.smallPlus,
+                        height: Sizes.smallPlus,
+                        child: CircularProgressIndicator(
+                          color: Cols.grey75,
+                          strokeWidth: 7.5,
+                        ),
+                      ),
+                    );
+                  }
+
                   return Column(
                     children: [
                       for (final chat in state.chats)
                         HoverWidget(
-                          builder: (isHovering) => Padding(
-                            padding: const EdgeInsets.only(left: Pad.smallPlus, right: Pad.smallPlus, top: Pad.smallPlus),
-                            child: GestureDetector(
-                              onTap: chat.profile.icon == -1
-                                  ? null
-                                  : () {
-                                      final tapped = chat.profile;
-                                      notifier.selectChat(state.selected == tapped ? null : tapped, ref);
-                                    },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: state.selected == chat.profile.username
-                                      ? Cols.grey33
-                                      : isHovering
-                                          ? Cols.grey29
-                                          : Colors.transparent,
-                                  borderRadius: BorderRadius.circular(Sizes.smallPlus),
-                                ),
-                                child: ProfileCard(
-                                  name: chat.profile.username,
-                                  text: chat.lastMessage,
-                                  icon: chat.profile.icon,
-                                  online: chat.profile.online,
+                          builder: (isHovering) {
+                            final isSelected = state.selected != null && state.selected!.username == chat.profile.username;
+
+                            return Padding(
+                              padding: const EdgeInsets.only(left: Pad.smallPlus, right: Pad.smallPlus, top: Pad.smallPlus),
+                              child: GestureDetector(
+                                onTap: chat.profile.icon == -1
+                                    ? null
+                                    : () {
+                                        notifier.selectChat(isSelected ? null : chat.profile, ref);
+                                      },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: isSelected
+                                        ? Cols.grey33
+                                        : isHovering
+                                            ? Cols.grey29
+                                            : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(Sizes.smallPlus),
+                                  ),
+                                  child: ProfileCard(
+                                    name: chat.profile.username,
+                                    text: chat.lastMessage,
+                                    icon: chat.profile.icon,
+                                    online: chat.profile.online,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                     ],
                   );
