@@ -1,20 +1,22 @@
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
-class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+class ProfileDetails extends StatelessWidget {
+  const ProfileDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 5,
+      flex: 2,
       child: Column(
         children: [
-          const HomePageHeader('Username', Cols.grey38),
+          Container(
+            height: Sizes.smallPlus,
+            color: Cols.grey29,
+          ),
           Expanded(
             child: Container(
-              color: Cols.grey33,
+              color: Cols.grey22,
             ),
           ),
         ],
