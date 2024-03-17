@@ -36,10 +36,8 @@ class ChatListNotifier extends StateNotifier<ChatListState> {
     );
   }
 
-  void selectChat(String? username) {
-    state = ChatListState(state.chats, username);
-    print("selected: ${state.selected}");
-  }
+  void loadChats(List<ChatListEntry> chats) => state = ChatListState(chats, state.selected);
+  void selectChat(String? username) => state = ChatListState(state.chats, username);
 }
 
 final chatListProvider = StateNotifierProvider<ChatListNotifier, ChatListState>(

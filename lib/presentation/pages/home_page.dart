@@ -1,5 +1,3 @@
-// ignore_for_file: dead_code, prefer_const_declarations
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
@@ -12,6 +10,7 @@ import 'package:pmfrontend/presentation/organisms/main/profile_details.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/organisms/left/chat_list.dart';
 import 'package:pmfrontend/presentation/organisms/main/home_screen.dart';
+import 'package:pmfrontend/presentation/states/chat_list_state.dart';
 import 'package:pmfrontend/presentation/states/profile_state.dart';
 
 class HomePage extends ConsumerWidget {
@@ -41,16 +40,16 @@ class HomePage extends ConsumerWidget {
                 flex: 7,
                 child: Consumer(
                   builder: (_, ref, __) {
-                    final state = false; // Check if chat is selected DELETE DART IGNORES
+                    final isOnHomepage = ref.watch(chatListProvider).selected == null;
 
-                    return state
-                        ? const Row(
+                    return isOnHomepage
+                        ? const HomeScreen()
+                        : const Row(
                             children: [
                               ChatScreen(),
                               ProfileDetails(),
                             ],
-                          )
-                        : const HomeScreen();
+                          );
                   },
                 ),
               ),

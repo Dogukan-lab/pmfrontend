@@ -33,10 +33,12 @@ class ChatList extends StatelessWidget {
                           builder: (isHovering) => Padding(
                             padding: const EdgeInsets.only(left: Pad.smallPlus, right: Pad.smallPlus, top: Pad.smallPlus),
                             child: GestureDetector(
-                              onTap: () {
-                                final tapped = chat.profile.username;
-                                notifier.selectChat(state.selected == tapped ? null : tapped);
-                              },
+                              onTap: chat.profile.icon == -1
+                                  ? null
+                                  : () {
+                                      final tapped = chat.profile.username;
+                                      notifier.selectChat(state.selected == tapped ? null : tapped);
+                                    },
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: state.selected == chat.profile.username

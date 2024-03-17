@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ProfileDetails extends StatelessWidget {
@@ -10,10 +11,7 @@ class ProfileDetails extends StatelessWidget {
       flex: 2,
       child: Column(
         children: [
-          Container(
-            height: Sizes.smallPlus,
-            color: Cols.grey29,
-          ),
+          const HomePageHeader('Details', Cols.grey29),
           Expanded(
             child: Container(
               color: Cols.grey22,

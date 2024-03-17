@@ -7,7 +7,7 @@ void getChatList(WidgetRef ref) async {
 
   final now = DateTime.now();
 
-  ref.read(chatListProvider.notifier).state = ChatListState([
+  ref.read(chatListProvider.notifier).loadChats([
     ChatListEntry(const Profile('Heirloomless', '', 5, false), 'chatlog 1', now),
     ChatListEntry(const Profile('LarsingDash', '', 4, true), 'chatlog 2', now),
     ChatListEntry(const Profile('Owon', '', 0, false), 'chatlog 3', now),
@@ -17,5 +17,5 @@ void getChatList(WidgetRef ref) async {
     ChatListEntry(const Profile('Owon4', '....', 0, false), 'chatlog 7', now),
     ChatListEntry(const Profile('Owon5', '.....', 0, false), 'chatlog 8', now),
     ChatListEntry(const Profile('Owon6', '......', 0, false), 'chatlog 9', now),
-  ], null);
+  ]);
 }
