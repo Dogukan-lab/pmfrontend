@@ -51,6 +51,7 @@ class Sizes {
   static const double smallMinus = 20;
   static const double small = 50;
   static const double smallPlus = 65;
+  static const double mediumMinus = 75;
   static const double medium = 100;
   static const double large = 200;
   static const double largePlus = 300;

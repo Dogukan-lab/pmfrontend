@@ -10,17 +10,17 @@ class ProfileCard extends StatelessWidget {
     required this.name,
     required this.text,
     required this.online,
+    this.size = Sizes.smallPlus,
   });
 
   final int icon;
   final String name;
   final String text;
   final bool online;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    const double height = Sizes.smallPlus;
-
     return Row(
       children: [
         Stack(
@@ -32,14 +32,14 @@ class ProfileCard extends StatelessWidget {
                   color: Cols.grey48,
                   width: 3,
                 ),
-                borderRadius: BorderRadius.circular(height),
+                borderRadius: BorderRadius.circular(size),
                 backgroundBlendMode: BlendMode.src,
                 color: Cols.grey48,
               ),
               child: Image.asset(
                 iconRepository.getIcon(icon),
-                width: height,
-                height: height,
+                width: size,
+                height: size,
               ),
             ),
             Container(
@@ -49,7 +49,7 @@ class ProfileCard extends StatelessWidget {
                   width: 3,
                   strokeAlign: BorderSide.strokeAlignCenter,
                 ),
-                borderRadius: BorderRadius.circular(height),
+                borderRadius: BorderRadius.circular(size),
                 backgroundBlendMode: BlendMode.src,
                 color: online ? Cols.green : Cols.grey107,
               ),
@@ -61,7 +61,7 @@ class ProfileCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: Pad.small),
           child: SizedBox(
-            height: height,
+            height: size,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
