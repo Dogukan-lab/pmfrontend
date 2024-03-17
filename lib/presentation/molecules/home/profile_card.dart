@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/data/repositories/icon_repository.dart';
+import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -26,22 +26,7 @@ class ProfileCard extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Cols.grey48,
-                  width: 3,
-                ),
-                borderRadius: BorderRadius.circular(size),
-                backgroundBlendMode: BlendMode.src,
-                color: Cols.grey48,
-              ),
-              child: Image.asset(
-                iconRepository.getIcon(icon),
-                width: size,
-                height: size,
-              ),
-            ),
+            ProfilePicture(icon, size),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(

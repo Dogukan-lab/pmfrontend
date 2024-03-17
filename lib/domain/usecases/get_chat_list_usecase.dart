@@ -1,19 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/domain/entities/profile.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
 
 void getChatList(WidgetRef ref) async {
-  await Future.delayed(const Duration(seconds: 1));
+  await Future.delayed(const Duration(seconds: 1, milliseconds: 500));
 
-  ref.read(chatListState.notifier).state = Map.of({
-    const Profile('Heirloomless', '', 5, false): 'chatlog 1',
-    const Profile('LarsingDash', '', 4, true): 'chatlog 2',
-    const Profile('Owon', '', 0, false): 'chatlog 3',
-    const Profile('Owon', '.', 0, false): 'chatlog 3',
-    const Profile('Owon', '..', 0, false): 'chatlog 3',
-    const Profile('Owon', '...', 0, false): 'chatlog 3',
-    const Profile('Owon', '....', 0, false): 'chatlog 3',
-    const Profile('Owon', '.....', 0, false): 'chatlog 3',
-    const Profile('Owon', '......', 0, false): 'chatlog 3',
-  });
+  final now = DateTime.now();
+  final List<ChatListEntry> list = [];
+  final online = ref.read(onlineUsersProvider);
+
+  for (int i = 0; i < online.length; i++) {
+    list.add(ChatListEntry(online[i], 'lastMessage $i', now));
+  }
+
+  ref.read(chatListProvider.notifier).loadChats(list);
 }

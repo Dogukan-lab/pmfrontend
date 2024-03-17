@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
+import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/organisms/left/settings.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OwnProfileCard extends StatelessWidget {
@@ -22,36 +23,42 @@ class OwnProfileCard extends StatelessWidget {
           child: child!,
         );
       },
-      child: Container(
-        height: Sizes.medium,
-        color: Cols.grey29,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            //ProfileCard
-            Padding(
-              padding: const EdgeInsets.only(left: Pad.small),
-              child: Consumer(
-                builder: (_, ref, __) {
-                  final state = ref.watch(profileProvider).profile;
+      child: HoverWidget(
+        builder: (isHovering) => Container(
+          height: Sizes.medium,
+          color: isHovering ? Cols.grey33 : Cols.grey29,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              //ProfileCard
+              Padding(
+                padding: const EdgeInsets.only(left: Pad.small),
+                child: Consumer(
+                  builder: (_, ref, __) {
+                    final state = ref.watch(profileProvider).profile;
 
-                  return ProfileCard(
-                    name: state.username,
-                    text: state.status,
-                    icon: state.icon,
-                    online: true,
-                    size: Sizes.mediumMinus,
-                  );
-                },
+                    return ProfileCard(
+                      name: state.username,
+                      text: state.status,
+                      icon: state.icon,
+                      online: true,
+                      size: Sizes.mediumMinus,
+                    );
+                  },
+                ),
               ),
-            ),
 
-            //Settings Icon
-            const Padding(
-              padding: EdgeInsets.only(right: Pad.medium),
-              child: CustomIconButton(FontAwesomeIcons.sliders, angle: -90),
-            )
-          ],
+              //Settings Icon
+              Padding(
+                padding: const EdgeInsets.only(right: Pad.medium),
+                child: CustomIconButton(
+                  FontAwesomeIcons.sliders,
+                  angle: -90,
+                  background: isHovering ? Cols.grey107 : Cols.grey75,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

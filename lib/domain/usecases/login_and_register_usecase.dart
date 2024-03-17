@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/DTOs/pm_user.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
-import 'package:pmfrontend/presentation/states/login_state.dart';
+import 'package:pmfrontend/presentation/states/login/login_state.dart';
 import 'package:pmfrontend/presentation/states/page_state.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
-import 'package:pmfrontend/presentation/states/register_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
+import 'package:pmfrontend/presentation/states/login/register_state.dart';
 
 void requestLogin(WidgetRef ref) async {
   final loginNotifier = ref.read(loginProvider.notifier);
