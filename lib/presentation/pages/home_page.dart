@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
-import 'package:pmfrontend/domain/usecases/get_online_users_usecase.dart';
+import 'package:pmfrontend/domain/usecases/get_searched_users_usecase.dart';
 import 'package:pmfrontend/presentation/molecules/home/own_profile_card.dart';
 import 'package:pmfrontend/presentation/organisms/left/settings.dart';
 import 'package:pmfrontend/presentation/organisms/main/chat_screen.dart';
@@ -75,7 +75,7 @@ class HomePage extends ConsumerWidget {
   void startupProcedure(WidgetRef ref) async {
     await Future.delayed(Duration.zero);
     getChatList(ref);
-    getOnlineUsers(ref);
+    getSearchedUsers(ref);
     ref.read(profileProvider.notifier).addFriend(const Profile('Heirloomless', 'Heirloomless status', 5, true));
   }
 }

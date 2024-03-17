@@ -2,7 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
 import 'package:pmfrontend/presentation/states/online_users_state.dart';
 
-void getOnlineUsers(WidgetRef ref) async {
+void getSearchedUsers(WidgetRef ref) async {
+  await Future.delayed(const Duration(seconds: 1));
+
   ref.read(onlineUsersProvider.notifier).addUsers([
     const Profile('Heirloomless', 'Heirloomless status', 5, false),
     const Profile('LarsingDash', 'LarsingDash statsu', 4, true),
