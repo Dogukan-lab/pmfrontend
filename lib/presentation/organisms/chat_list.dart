@@ -1,102 +1,52 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat_list_state.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //Header
-        const HomePageHeader('Chats', Cols.grey29),
+    return Expanded(
+      child: Column(
+        children: [
+          //Header
+          const HomePageHeader('Chats', Cols.grey29),
 
-        //List
-        Expanded(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Consumer(
-              builder: (_, ref, __) {
-                var state = ref.watch(chatListState);
+          //List
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Consumer(
+                builder: (_, ref, __) {
+                  var state = ref.watch(chatListState);
 
-                return Column(
-                  children: [
-                    for (final chat in state.entries)
-                      Padding(
-                        padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
-                        child: ProfileCard(
-                          name: chat.key.username,
-                          text: chat.value,
-                          icon: chat.key.icon,
-                          online: chat.key.online,
+                  return Column(
+                    children: [
+                      for (final chat in state.entries)
+                        Padding(
+                          padding: const EdgeInsets.only(left: Pad.smallPlus, top: Pad.smallPlus),
+                          child: ProfileCard(
+                            name: chat.key.username,
+                            text: chat.value,
+                            icon: chat.key.icon,
+                            online: chat.key.online,
+                          ),
                         ),
-                      ),
-                  ],
-                );
-              },
+                    ],
+                  );
+                },
+              ),
             ),
           ),
-        ),
 
-        //Profile Card
-        Container(
-          height: Sizes.medium,
-          color: Cols.grey29,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //ProfileCard
-              Padding(
-                padding: const EdgeInsets.only(left: Pad.small),
-                child: Consumer(
-                  builder: (_, ref, __) {
-                    final state = ref.watch(profileProvider).profile;
-
-                    return ProfileCard(
-                      name: state.username,
-                      text: state.bio,
-                      icon: state.icon,
-                      online: true,
-                      size: Sizes.mediumMinus,
-                    );
-                  },
-                ),
-              ),
-
-              //Settings Icon
-              Padding(
-                padding: const EdgeInsets.only(right: Pad.medium),
-                child: Transform.rotate(
-                  angle: -90 * (pi / 180),
-                  child: Container(
-                    width: Sizes.smallPlus,
-                    height: Sizes.smallPlus,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(Sizes.small)),
-                      color: Cols.grey107,
-                    ),
-                    child: const FaIcon(
-                      FontAwesomeIcons.sliders,
-                      size: Sizes.small,
-                      color: Cols.grey29,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
+          //Profile Card
+        ],
+      ),
     );
   }
 }
