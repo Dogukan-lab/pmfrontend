@@ -24,6 +24,8 @@ void requestLogin(WidgetRef ref) async {
     ).toJson()),
   );
 
+  //ref.read(profileProvider.notifier).loadProfile()
+
   if (response != null && response.statusCode == HttpStatus.ok) {
     ref.read(pageProvider.notifier).setPage(ref, Pages.home);
   } else {

@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/presentation/atoms/hallownest_header.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
-import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
+import 'package:pmfrontend/presentation/molecules/home/home_list_item.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/online_users_state.dart';
 import 'package:pmfrontend/presentation/states/profile_state.dart';
@@ -36,30 +37,22 @@ class HomeScreen extends StatelessWidget {
                     return false;
                   });
 
-                  return Column(
-                    children: [
-                      //Friends
-                      const Text('Friendly shades'),
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(Pad.smallPlus, Pad.smallPlus, Pad.smallPlus, 0),
+                    child: Column(
+                      children: [
+                        //Friends
+                        const HallownestHeader('Friendly shades'),
+                        for (var user in friends) HomeListItem(user: user),
 
-                      for (var user in friends)
-                        ProfileCard(
-                          name: user.username,
-                          text: user.bio,
-                          icon: user.icon,
-                          online: user.online,
-                        ),
+                        //Divider
+                        const SizedBox(height: Pad.smallPlus),
 
-                      //Other
-                      const Text('Other shades'),
-
-                      for (var user in online)
-                        ProfileCard(
-                          name: user.username,
-                          text: user.bio,
-                          icon: user.icon,
-                          online: user.online,
-                        ),
-                    ],
+                        //Other
+                        const HallownestHeader('Other shades'),
+                        for (var user in online) HomeListItem(user: user),
+                      ],
+                    ),
                   );
                 },
               ),

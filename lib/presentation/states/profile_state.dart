@@ -36,6 +36,8 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
   void loadProfile(ProfileState profile) {
     state = profile;
   }
+
+  void addFriend(Profile friend) => state = state.copyWith(friends: state.friends + [friend]);
 }
 
 final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((ref) => ProfileNotifier());
