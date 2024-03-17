@@ -11,6 +11,5 @@ class IconRepository {
     }
   }
 
-  String getIcon(int i) => icons[i];
-  String getDefualtIcon() => '$path/icon_default.png';
+  String getIcon(int i) => i == -1 ? '$path/icon_default.png' : icons[i];
 }

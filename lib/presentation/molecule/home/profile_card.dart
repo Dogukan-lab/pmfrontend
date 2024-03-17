@@ -37,7 +37,7 @@ class ProfileCard extends StatelessWidget {
                 color: Cols.grey48,
               ),
               child: Image.asset(
-                iconRepository.getIcon(icon % amountOfIcons),
+                iconRepository.getIcon(icon),
                 width: height,
                 height: height,
               ),
