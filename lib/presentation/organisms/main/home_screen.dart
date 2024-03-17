@@ -57,10 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Consumer(
                 builder: (_, ref, child) {
                   final friends = List<Profile>.from(ref.watch(profileProvider).friends);
-                  final online = List<Profile>.from(ref.watch(onlineUsersProvider));
+                  final searched = List<Profile>.from(ref.watch(searchedUsersProvider));
 
                   //Loading
-                  if (online.isEmpty) {
+                  if (searched.isEmpty) {
                     return const Padding(
                       padding: EdgeInsets.only(top: Pad.medium),
                       child: SizedBox(
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
 
                   //Remove duplicates
-                  online.removeWhere((user) {
+                  searched.removeWhere((user) {
                     for (var other in friends) {
                       if (user.username == other.username) return true;
                     }
@@ -85,11 +85,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   //Sorting
                   friends.sort((a, b) => a.username.compareTo(b.username));
-                  online.sort((a, b) => a.username.compareTo(b.username));
+                  searched.sort((a, b) => a.username.compareTo(b.username));
 
                   //Searching
                   friends.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
-                  online.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
+                  searched.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
 
                   //List
                   return Padding(
@@ -109,10 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         //Other
                         const HallownestHeader('Other shades'),
-                        for (int i = 0; i < online.length; i++)
+                        for (int i = 0; i < searched.length; i++)
                           HomeListItem(
-                            user: online[i],
-                            isLast: i == online.length - 1,
+                            user: searched[i],
+                            isLast: i == searched.length - 1,
                           ),
                       ],
                     ),

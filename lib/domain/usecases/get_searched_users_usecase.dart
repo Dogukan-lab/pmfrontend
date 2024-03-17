@@ -1,11 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
-import 'package:pmfrontend/presentation/states/online_users_state.dart';
+import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
 
 void getSearchedUsers(WidgetRef ref) async {
   await Future.delayed(const Duration(seconds: 1));
 
-  ref.read(onlineUsersProvider.notifier).addUsers([
+  ref.read(searchedUsersProvider.notifier).addUsers([
     const Profile('Heirloomless', 'Heirloomless status', 5, false),
     const Profile('LarsingDash', 'LarsingDash statsu', 4, true),
     const Profile('Owon', 'Owon status', 0, false),

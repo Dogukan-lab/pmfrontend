@@ -7,7 +7,7 @@ void getChatList(WidgetRef ref) async {
 
   final now = DateTime.now();
   final List<ChatListEntry> list = [];
-  final online = ref.read(onlineUsersProvider);
+  final online = ref.read(searchedUsersProvider);
 
   for (int i = 0; i < online.length; i++) {
     list.add(ChatListEntry(online[i], 'lastMessage $i', now));
