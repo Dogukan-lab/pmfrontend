@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
-import 'package:pmfrontend/presentation/states/online_users_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
 
 void getChatList(WidgetRef ref) async {
   await Future.delayed(const Duration(seconds: 1, milliseconds: 500));

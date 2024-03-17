@@ -5,7 +5,7 @@ import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/organisms/left/settings.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OwnProfileCard extends StatelessWidget {

@@ -6,8 +6,8 @@ import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class HomeListItem extends StatelessWidget {
   const HomeListItem({super.key, required this.user, this.isLast = false});

@@ -5,8 +5,8 @@ import 'package:pmfrontend/presentation/atoms/hallownest_header.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/molecules/home/home_list_item.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/online_users_state.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
+import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

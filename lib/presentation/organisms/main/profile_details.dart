@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/chat_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 
 class ProfileDetails extends ConsumerWidget {
   const ProfileDetails({super.key});

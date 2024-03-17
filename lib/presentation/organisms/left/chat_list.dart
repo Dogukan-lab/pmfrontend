@@ -4,7 +4,7 @@ import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});

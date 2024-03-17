@@ -10,8 +10,8 @@ import 'package:pmfrontend/presentation/organisms/main/profile_details.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/organisms/left/chat_list.dart';
 import 'package:pmfrontend/presentation/organisms/main/home_screen.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
-import 'package:pmfrontend/presentation/states/profile_state.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
