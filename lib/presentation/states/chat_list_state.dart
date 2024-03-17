@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 
 class ChatListEntry {
   ChatListEntry(
@@ -17,7 +18,7 @@ class ChatListState {
   ChatListState(this.chats, this.selected);
 
   final List<ChatListEntry> chats;
-  final String? selected;
+  final Profile? selected;
 }
 
 class ChatListNotifier extends StateNotifier<ChatListState> {
@@ -37,7 +38,10 @@ class ChatListNotifier extends StateNotifier<ChatListState> {
   }
 
   void loadChats(List<ChatListEntry> chats) => state = ChatListState(chats, state.selected);
-  void selectChat(String? username) => state = ChatListState(state.chats, username);
+  void selectChat(Profile? profile, WidgetRef ref) {
+    state = ChatListState(state.chats, profile);
+    if (profile != null) loadChat(ref, profile);
+  }
 }
 
 final chatListProvider = StateNotifierProvider<ChatListNotifier, ChatListState>(

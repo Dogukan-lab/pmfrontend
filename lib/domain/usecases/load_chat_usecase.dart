@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/states/chat_list_state.dart';
+import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/presentation/states/chat_state.dart';
 
-void loadChat(WidgetRef ref) async {
-  // ref.read(chatListState.notifier)
+void loadChat(WidgetRef ref, Profile profile) async {
+  final chat = ref.read(chatProvider.notifier);
+  chat.loadChat(ChatState(profile, []));
 }

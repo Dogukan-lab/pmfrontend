@@ -36,8 +36,8 @@ class ChatList extends StatelessWidget {
                               onTap: chat.profile.icon == -1
                                   ? null
                                   : () {
-                                      final tapped = chat.profile.username;
-                                      notifier.selectChat(state.selected == tapped ? null : tapped);
+                                      final tapped = chat.profile;
+                                      notifier.selectChat(state.selected == tapped ? null : tapped, ref);
                                     },
                               child: Container(
                                 decoration: BoxDecoration(

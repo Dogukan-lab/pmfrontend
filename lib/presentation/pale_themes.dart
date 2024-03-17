@@ -42,6 +42,7 @@ abstract class Pad {
   static const double smallMinus = 5;
   static const double small = 10;
   static const double smallPlus = 15;
+  static const double mediumMinus = 20;
   static const double medium = 25;
   static const double mediumPlus = 35;
   static const double large = 50;

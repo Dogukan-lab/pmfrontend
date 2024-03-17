@@ -29,7 +29,7 @@ class HomeListItem extends StatelessWidget {
                   child: HoverWidget(
                     builder: (isHovering) => Consumer(
                       builder: (_, ref, child) => GestureDetector(
-                        onTap: () => ref.read(chatListProvider.notifier).selectChat(user.username),
+                        onTap: () => ref.read(chatListProvider.notifier).selectChat(user, ref),
                         child: child,
                       ),
                       child: Container(
