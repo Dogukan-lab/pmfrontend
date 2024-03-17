@@ -10,6 +10,8 @@ import 'package:pmfrontend/presentation/states/login/register_state.dart';
 import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
 
+String apiToken = '';
+
 void main() {
   runApp(
     ProviderScope(

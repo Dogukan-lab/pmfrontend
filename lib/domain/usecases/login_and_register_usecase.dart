@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/DTOs/pm_user.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
-import 'package:pmfrontend/domain/entities/profile.dart';
 import 'package:pmfrontend/presentation/states/login/login_state.dart';
 import 'package:pmfrontend/presentation/states/page_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
@@ -24,10 +23,9 @@ void requestLogin(WidgetRef ref) async {
     ).toJson()),
   );
 
-  //ref.read(profileProvider.notifier).loadProfile()
-
   if (response != null && response.statusCode == HttpStatus.ok) {
     ref.read(pageProvider.notifier).setPage(ref, Pages.home);
+    ref.read(profileProvider.notifier).loadProfile(parseLoginJson(response.body));
   } else {
     loginNotifier.changeEnum(LoginStateEnum.incorrect);
     await Future.delayed(const Duration(seconds: 2));
@@ -47,22 +45,18 @@ void requestRegistration(WidgetRef ref) async {
     ).toJson()),
   );
 
-  ref.read(profileProvider.notifier).loadProfile(ProfileState(
-        profile: Profile(
-          registerState.username,
-          'Hi I\'m new!',
-          0,
-          true,
-        ),
-        background: 0,
-        friends: [],
-      ));
-
   if (response != null && response.statusCode == HttpStatus.ok) {
     ref.read(pageProvider.notifier).setPage(ref, Pages.home);
+    ref.read(profileProvider.notifier).loadProfile(parseLoginJson(response.body));
   } else {
     registerNotifier.changeEnum(RegisterStateEnum.incorrect);
     await Future.delayed(const Duration(seconds: 2));
     registerNotifier.changeEnum(RegisterStateEnum.none);
   }
+}
+
+ProfileState parseLoginJson(String jsonString) {
+  Map<String, dynamic> jsonMap = json.decode(jsonString);
+  ProfileState state = ProfileState.fromJson(jsonMap);
+  return state;
 }

@@ -6,4 +6,13 @@ class Profile {
   final String status;
   final int icon;
   final bool online;
+
+  factory Profile.fromJson(Map<String, dynamic> json) {
+    return Profile(
+      json['username'] as String,
+      json['status'] as String,
+      json['profileIcon'] as int,
+      json['isOnline'] as bool,
+    );
+  }
 }

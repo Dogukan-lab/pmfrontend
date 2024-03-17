@@ -9,7 +9,7 @@ enum Pages {
 }
 
 class PageNotifier extends StateNotifier<Pages> {
-  PageNotifier() : super(Pages.home);
+  PageNotifier() : super(Pages.login);
 
   void setPage(WidgetRef ref, Pages next) {
     if (state == Pages.login || next == Pages.home) {
