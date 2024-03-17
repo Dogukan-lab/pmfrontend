@@ -55,6 +55,7 @@ abstract class Sizes {
   static const double smallPlus = 65;
   static const double mediumMinus = 75;
   static const double medium = 100;
-  static const double large = 200;
+  static const double largeMinus = 200;
+  static const double large = 250;
   static const double largePlus = 300;
 }

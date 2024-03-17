@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class HallownestHeader extends StatelessWidget {
-  const HallownestHeader(this.text, {super.key});
+  const HallownestHeader(this.text, {super.key, this.size = 20, this.center = false});
 
   final String text;
+  final double size;
+  final bool center;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,8 @@ class HallownestHeader extends StatelessWidget {
       width: double.infinity,
       child: Text(
         text,
-        style: Styles.gg.copyWith(fontSize: 20),
+        style: Styles.gg.copyWith(fontSize: size),
+        textAlign: center ? TextAlign.center : TextAlign.start,
       ),
     );
   }

@@ -20,7 +20,7 @@ class Settings extends ConsumerWidget {
           },
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.large, vertical: Sizes.medium),
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.largeMinus, vertical: Sizes.medium),
           child: Column(
             children: [
               //Header
