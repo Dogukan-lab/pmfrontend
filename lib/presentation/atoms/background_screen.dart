@@ -20,21 +20,21 @@ class BackgroundScreen extends StatelessWidget {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
+        child,
         IgnorePointer(
           child: Padding(
             padding: const EdgeInsets.all(Pad.mediumPlus).add(offset),
             child: Consumer(
               builder: (_, ref, __) {
-                final background = ref.watch(profileProvider).background + 3;
+                final background = ref.watch(profileProvider).background;
                 return Image.asset(
                   backgroundRepository.getBackground(background),
-                  colorBlendMode: BlendMode.srcOver,
+                  opacity: const AlwaysStoppedAnimation(0.5),
                 );
               },
             ),
           ),
         ),
-        child,
       ],
     );
   }

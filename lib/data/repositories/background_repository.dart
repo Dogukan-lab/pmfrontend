@@ -1,12 +1,12 @@
 final BackgroundRepository backgroundRepository = BackgroundRepository();
-const int amountOfIcons = 10;
+const int amountOfBackgrounds = 4;
 const String path = 'backgrounds/';
 
 class BackgroundRepository {
   List<String> backgrounds = [];
 
   BackgroundRepository() {
-    for (var i = 0; i < amountOfIcons; i++) {
+    for (var i = 0; i < amountOfBackgrounds; i++) {
       backgrounds.add('${path}background_$i.png');
     }
   }

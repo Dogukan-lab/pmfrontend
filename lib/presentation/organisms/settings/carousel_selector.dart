@@ -2,19 +2,34 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/data/repositories/icon_repository.dart';
-import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 
-class IconSelector extends StatefulWidget {
-  const IconSelector({super.key});
+class CarouselSelector extends StatefulWidget {
+  const CarouselSelector({
+    super.key,
+    required this.amount,
+    required this.fraction,
+    required this.initial,
+    required this.onChange,
+    required this.child,
+  });
+
+  final int amount;
+  final double fraction;
+  final int Function(WidgetRef ref) initial;
+  final void Function(
+    SettingsState state,
+    SettingsNotifier notifier,
+    int index,
+  ) onChange;
+  final Widget Function(int index) child;
 
   @override
-  State<IconSelector> createState() => _IconSelectorState();
+  State<CarouselSelector> createState() => _CarouselSelectorState();
 }
 
-class _IconSelectorState extends State<IconSelector> {
+class _CarouselSelectorState extends State<CarouselSelector> {
   final _controller = CarouselController();
 
   @override
@@ -22,25 +37,19 @@ class _IconSelectorState extends State<IconSelector> {
     return Expanded(
       child: Consumer(
         builder: (_, ref, __) {
-          final initial = ref.read(settingsState).current.icon;
+          final initial = widget.initial(ref);
 
           return CarouselSlider.builder(
-            itemCount: amountOfIcons,
+            itemCount: widget.amount,
             carouselController: _controller,
-            itemBuilder: (_, index, __) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Pad.mediumMinus),
-              child: SizedBox(
-                width: double.infinity,
-                child: ProfilePicture(index, Sizes.largeMinus),
-              ),
-            ),
+            itemBuilder: (_, index, __) => widget.child(index),
             options: CarouselOptions(
-              viewportFraction: 1 / 4,
+              viewportFraction: widget.fraction,
               height: Sizes.large,
               onPageChanged: (index, _) {
                 final state = ref.read(settingsState);
                 final notifier = ref.read(settingsState.notifier);
-                notifier.updateNext(state.next.copyWith(icon: index));
+                widget.onChange(state, notifier, index);
               },
               initialPage: initial == -1 ? 0 : initial,
             ),

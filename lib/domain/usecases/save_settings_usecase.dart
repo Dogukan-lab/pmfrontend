@@ -15,7 +15,7 @@ void saveSettingsUsecase(WidgetRef ref) async {
         status: settings.next.status,
         icon: settings.next.icon,
       ),
-      background: settings.current.background,
+      background: settings.next.background,
     ),
   );
 
