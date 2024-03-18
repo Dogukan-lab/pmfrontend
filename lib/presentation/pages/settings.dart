@@ -16,15 +16,17 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    submit() {
+      final settingsScreen = ref.read(settingsVisibleState.notifier);
+      settingsScreen.state = !settingsScreen.state;
+
+      saveSettingsUsecase(ref);
+    }
+
     return Stack(
       children: [
         GestureDetector(
-          onTap: () {
-            final settingsScreen = ref.read(settingsVisibleState.notifier);
-            settingsScreen.state = !settingsScreen.state;
-
-            saveSettingsUsecase(ref);
-          },
+          onTap: submit,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.largePlus, vertical: Sizes.medium),
@@ -35,7 +37,7 @@ class SettingsScreen extends ConsumerWidget {
                 //Header
                 const HomePageHeader('Settings', Cols.grey29),
                 //Username/Status
-                const SettingsTextfields(),
+                SettingsTextfields(submit),
                 //Icons
                 CarouselSelector(
                   amount: amountOfIcons,

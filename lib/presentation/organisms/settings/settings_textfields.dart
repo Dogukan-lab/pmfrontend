@@ -6,23 +6,15 @@ import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class SettingsTextfields extends ConsumerStatefulWidget {
-  const SettingsTextfields({super.key});
+  const SettingsTextfields(this.submit, {super.key});
+
+  final void Function() submit;
 
   @override
   ConsumerState<SettingsTextfields> createState() => _SettingsTextfieldsState();
 }
 
 class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
-  // final _usernameController = TextEditingController();
-  final _statusController = TextEditingController();
-
-  @override
-  void initState() {
-    // _usernameController.text = ref.read(profileProvider).profile.username;
-    _statusController.text = ref.read(profileProvider).profile.status;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -42,6 +34,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
               final notifier = ref.read(settingsState.notifier);
               notifier.updateNext(state.next.copyWith(username: value));
             },
+            onSubmitted: (_) => widget.submit(),
           ),
           CustomTextField(
             width: Sizes.huge,
@@ -56,6 +49,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
               final notifier = ref.read(settingsState.notifier);
               notifier.updateNext(state.next.copyWith(status: value));
             },
+            onSubmitted: (_) => widget.submit,
           ),
         ],
       ),
