@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
-import 'package:pmfrontend/presentation/atoms/background_screen.dart';
-import 'package:pmfrontend/presentation/atoms/hallownest_header.dart';
-import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
+import 'package:pmfrontend/presentation/atoms/images/background_screen.dart';
+import 'package:pmfrontend/presentation/atoms/headers/hallownest_header.dart';
+import 'package:pmfrontend/presentation/atoms/headers/home_page_header.dart';
+import 'package:pmfrontend/presentation/atoms/tools/custom_textfield.dart';
 import 'package:pmfrontend/presentation/molecules/home/home_list_item.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
@@ -17,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _searchController = TextEditingController();
   String _searchTarget = '';
 
   @override
@@ -34,22 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
             //Seachbar
             Padding(
               padding: const EdgeInsets.fromLTRB(Pad.small, Pad.smallPlus, Pad.small, 0),
-              child: Container(
+              child: CustomTextField(
                 height: Sizes.small,
-                decoration: BoxDecoration(
-                  color: Cols.grey48,
-                  borderRadius: BorderRadius.circular(Radii.small),
-                ),
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: (value) => setState(() => _searchTarget = value),
-                  style: Styles.ggGrey,
-                  cursorColor: Cols.grey107,
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-                    border: InputBorder.none,
-                  ),
-                ),
+                backgroundColor: Cols.grey48,
+                style: Styles.ggGrey,
+                init: (controller) {},
+                onChanged: (value) => setState(() => _searchTarget = value),
               ),
             ),
 

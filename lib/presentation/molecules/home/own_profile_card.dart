@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
-import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
+import 'package:pmfrontend/presentation/atoms/images/custom_icon_button.dart';
+import 'package:pmfrontend/presentation/atoms/tools/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';

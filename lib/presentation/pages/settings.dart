@@ -4,10 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/background_repository.dart';
 import 'package:pmfrontend/data/repositories/icon_repository.dart';
 import 'package:pmfrontend/domain/usecases/save_settings_usecase.dart';
-import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
+import 'package:pmfrontend/presentation/atoms/headers/home_page_header.dart';
 import 'package:pmfrontend/presentation/organisms/settings/carousel_selector.dart';
 import 'package:pmfrontend/presentation/organisms/settings/settings_textfields.dart';
-import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
+import 'package:pmfrontend/presentation/atoms/images/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 

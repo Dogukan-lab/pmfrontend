@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/presentation/atoms/tools/custom_textfield.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class LoginInputs extends StatefulWidget {
   const LoginInputs({
     super.key,
+    required this.isLogin,
     required this.usernameChange,
     required this.usernameSubmit,
     required this.passwordChange,
     required this.passwordSubmit,
   });
 
+  final bool isLogin;
   final void Function(WidgetRef ref, String text) usernameChange;
   final void Function(WidgetRef ref) usernameSubmit;
   final void Function(WidgetRef ref, String text) passwordChange;
@@ -21,14 +25,8 @@ class LoginInputs extends StatefulWidget {
 }
 
 class _LoginInputsState extends State<LoginInputs> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    _usernameController.clear();
-    _passwordController.clear();
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -42,30 +40,20 @@ class _LoginInputsState extends State<LoginInputs> {
         ),
 
         //Username Field
-        Container(
-          height: Sizes.small,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Radii.small),
-          ),
-          child: Consumer(
-            builder: (_, ref, __) {
-              return TextField(
-                controller: _usernameController,
-                onChanged: (value) => widget.usernameChange(ref, _usernameController.text),
-                onSubmitted: (_) {
-                  widget.usernameChange(ref, _usernameController.text);
-                  widget.usernameSubmit(ref);
-                },
-                style: Styles.ggGrey,
-                cursorColor: Cols.grey107,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-                  border: InputBorder.none,
-                ),
-              );
-            },
-          ),
+        Consumer(
+          builder: (_, ref, __) {
+            return CustomTextField(
+              key: ValueKey(widget.isLogin),
+              backgroundColor: Colors.white,
+              style: Styles.ggGrey,
+              init: (controller) => controller.clear(),
+              onChanged: (value) => widget.usernameChange(ref, value),
+              onSubmitted: (value) {
+                widget.usernameChange(ref, value);
+                widget.usernameSubmit(ref);
+              },
+            );
+          },
         ),
 
         //Spacer
@@ -81,32 +69,21 @@ class _LoginInputsState extends State<LoginInputs> {
         ),
 
         //Password Field
-        Container(
-          height: Sizes.small,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Radii.small),
-          ),
-          child: Consumer(
-            builder: (_, ref, __) {
-              return TextField(
-                controller: _passwordController,
-                onChanged: (value) => widget.passwordChange(ref, _passwordController.text),
-                onSubmitted: (_) {
-                  widget.passwordChange(ref, _passwordController.text);
-                  widget.passwordSubmit(ref);
-                },
-                style: Styles.ggGrey,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(horizontal: Pad.small),
-                ),
-                obscureText: true,
-                enableSuggestions: false,
-                autocorrect: false,
-              );
-            },
-          ),
+        Consumer(
+          builder: (_, ref, __) {
+            return CustomTextField(
+              key: ValueKey(widget.isLogin),
+              backgroundColor: Colors.white,
+              style: Styles.ggGrey,
+              obscure: true,
+              init: (controller) => controller.clear(),
+              onChanged: (value) => widget.passwordChange(ref, value),
+              onSubmitted: (value) {
+                widget.passwordChange(ref, value);
+                widget.passwordSubmit(ref);
+              },
+            );
+          },
         ),
       ],
     );

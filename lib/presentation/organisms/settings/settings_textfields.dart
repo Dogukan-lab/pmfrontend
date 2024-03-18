@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/presentation/atoms/tools/custom_textfield.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
@@ -12,12 +13,12 @@ class SettingsTextfields extends ConsumerStatefulWidget {
 }
 
 class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
-  final _usernameController = TextEditingController();
+  // final _usernameController = TextEditingController();
   final _statusController = TextEditingController();
 
   @override
   void initState() {
-    _usernameController.text = ref.read(profileProvider).profile.username;
+    // _usernameController.text = ref.read(profileProvider).profile.username;
     _statusController.text = ref.read(profileProvider).profile.status;
     super.initState();
   }
@@ -28,53 +29,33 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          CustomTextField(
             width: Sizes.largePlus,
             height: Sizes.small,
-            decoration: BoxDecoration(
-              color: Cols.grey48,
-              borderRadius: BorderRadius.circular(Radii.small),
-            ),
-            child: TextField(
-              controller: _usernameController,
-              onChanged: (value) {
-                final state = ref.read(settingsState);
-                final notifier = ref.read(settingsState.notifier);
-                notifier.updateNext(state.next.copyWith(username: value));
-              },
-              style: Styles.gg,
-              cursorColor: Cols.grey107,
-              decoration: InputDecoration(
-                hintText: 'Username',
-                hintStyle: Styles.ggGrey,
-                contentPadding: const EdgeInsets.symmetric(horizontal: Pad.small),
-                border: InputBorder.none,
-              ),
-            ),
+            backgroundColor: Cols.grey48,
+            style: Styles.gg,
+            init: (controller) => controller.text = ref.read(profileProvider).profile.username,
+            hint: 'Username',
+            hintStyle: Styles.ggGrey,
+            onChanged: (value) {
+              final state = ref.read(settingsState);
+              final notifier = ref.read(settingsState.notifier);
+              notifier.updateNext(state.next.copyWith(username: value));
+            },
           ),
-          Container(
+          CustomTextField(
             width: Sizes.huge,
             height: Sizes.small,
-            decoration: BoxDecoration(
-              color: Cols.grey48,
-              borderRadius: BorderRadius.circular(Radii.small),
-            ),
-            child: TextField(
-              controller: _statusController,
-              onChanged: (value) {
-                final state = ref.read(settingsState);
-                final notifier = ref.read(settingsState.notifier);
-                notifier.updateNext(state.next.copyWith(status: value));
-              },
-              style: Styles.gg,
-              cursorColor: Cols.grey107,
-              decoration: InputDecoration(
-                hintText: 'Status',
-                hintStyle: Styles.ggGrey,
-                contentPadding: const EdgeInsets.symmetric(horizontal: Pad.small),
-                border: InputBorder.none,
-              ),
-            ),
+            backgroundColor: Cols.grey48,
+            style: Styles.gg,
+            init: (controller) => controller.text = ref.read(profileProvider).profile.username,
+            hint: 'Status',
+            hintStyle: Styles.ggGrey,
+            onChanged: (value) {
+              final state = ref.read(settingsState);
+              final notifier = ref.read(settingsState.notifier);
+              notifier.updateNext(state.next.copyWith(status: value));
+            },
           ),
         ],
       ),

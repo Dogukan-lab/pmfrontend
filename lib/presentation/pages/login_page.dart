@@ -9,13 +9,11 @@ class LoginPage extends StatelessWidget {
     required this.background,
     required this.inputs,
     required this.errorCheck,
-    this.isLogin = true,
   });
 
   final String background;
   final LoginInputs inputs;
   final bool Function(WidgetRef ref) errorCheck;
-  final bool isLogin;
 
   /*
   Stack
@@ -64,7 +62,7 @@ class LoginPage extends StatelessWidget {
         LoginPanel(
           inputs: inputs,
           errorCheck: errorCheck,
-          isLogin: isLogin,
+          isLogin: inputs.isLogin,
         )
       ],
     );

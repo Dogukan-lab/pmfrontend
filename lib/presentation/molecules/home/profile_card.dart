@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
+import 'package:pmfrontend/presentation/atoms/images/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ProfileCard extends StatelessWidget {

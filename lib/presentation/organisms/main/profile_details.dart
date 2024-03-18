@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/atoms/hallownest_header.dart';
-import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
-import 'package:pmfrontend/presentation/atoms/profile_picture.dart';
+import 'package:pmfrontend/presentation/atoms/headers/hallownest_header.dart';
+import 'package:pmfrontend/presentation/atoms/headers/home_page_header.dart';
+import 'package:pmfrontend/presentation/atoms/images/profile_picture.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 

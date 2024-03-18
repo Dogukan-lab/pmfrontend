@@ -34,13 +34,13 @@ void main() {
                   return LoginPage(
                     background: 'backgrounds/registerpage_background.png',
                     inputs: LoginInputs(
+                      isLogin: false,
                       usernameChange: (ref, text) => ref.read(registerProvider.notifier).changeUsername(text),
                       usernameSubmit: (ref) => requestRegistration(ref),
                       passwordChange: (ref, text) => ref.read(registerProvider.notifier).changePassword(text),
                       passwordSubmit: (ref) => requestRegistration(ref),
                     ),
                     errorCheck: (ref) => ref.watch(registerProvider).registerEnum == RegisterStateEnum.incorrect,
-                    isLogin: false,
                   );
                 case Pages.home:
                   return const HomePage();
@@ -48,6 +48,7 @@ void main() {
                   return LoginPage(
                     background: 'backgrounds/login_background.png',
                     inputs: LoginInputs(
+                      isLogin: true,
                       usernameChange: (ref, text) => ref.read(loginProvider.notifier).changeUsername(text),
                       usernameSubmit: (ref) => requestLogin(ref),
                       passwordChange: (ref, text) => ref.read(loginProvider.notifier).changePassword(text),
