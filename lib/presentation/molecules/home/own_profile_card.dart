@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/atoms/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
-import 'package:pmfrontend/presentation/organisms/left/settings.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -17,7 +17,7 @@ class OwnProfileCard extends StatelessWidget {
       builder: (context, ref, child) {
         return GestureDetector(
           onTap: () {
-            final notifier = ref.read(settingsState.notifier);
+            final notifier = ref.read(settingsVisibleState.notifier);
             notifier.state = !notifier.state;
           },
           child: child!,

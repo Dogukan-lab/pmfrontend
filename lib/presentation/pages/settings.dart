@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
+import 'package:pmfrontend/presentation/organisms/settings/settings_textfields.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-
-final settingsState = StateProvider<bool>((ref) => false);
+import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 
 class Settings extends ConsumerWidget {
   const Settings({super.key});
@@ -15,24 +15,23 @@ class Settings extends ConsumerWidget {
       children: [
         GestureDetector(
           onTap: () {
-            final notifier = ref.read(settingsState.notifier);
+            final notifier = ref.read(settingsVisibleState.notifier);
             notifier.state = !notifier.state;
           },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.largeMinus, vertical: Sizes.medium),
-          child: Column(
-            children: [
-              //Header
-              const HomePageHeader('Settings', Cols.grey29),
+          child: Container(
+            color: Cols.grey38,
+            child: const Column(
+              children: [
+                //Header
+                HomePageHeader('Settings', Cols.grey29),
 
-              //List
-              Expanded(
-                child: Container(
-                  color: Cols.grey38,
-                ),
-              ),
-            ],
+                //List
+                SettingsTextfields(),
+              ],
+            ),
           ),
         ),
       ],

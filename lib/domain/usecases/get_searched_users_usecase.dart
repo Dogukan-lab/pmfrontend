@@ -6,15 +6,15 @@ void getSearchedUsers(WidgetRef ref) async {
   await Future.delayed(const Duration(seconds: 1));
 
   ref.read(searchedUsersProvider.notifier).addUsers([
-    const Profile('Heirloomless', 'Heirloomless status', 5, false),
-    const Profile('LarsingDash', 'LarsingDash statsu', 4, true),
-    const Profile('Owon', 'Owon status', 0, false),
-    const Profile('Owon1', 'Owon status', 0, false),
-    const Profile('Owon2', 'Owon status', 0, false),
-    const Profile('Owon3', 'Owon status', 0, false),
-    const Profile('Owon4', 'Owon status', 0, false),
-    const Profile('Owon5', 'Owon status', 0, false),
-    const Profile('Owon6', 'Owon status', 0, false),
-    const Profile('Owon7', 'Owon status', 0, false),
+    const Profile(username: 'Heirloomless', status: 'Heirloomless status', icon: 5, online: false),
+    const Profile(username: 'LarsingDash', status: 'LarsingDash statsu', icon: 4, online: true),
+    const Profile(username: 'Owon', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon1', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon2', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon3', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon4', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon5', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon6', status: 'Owon status', icon: 0, online: false),
+    const Profile(username: 'Owon7', status: 'Owon status', icon: 0, online: false),
   ]);
 }

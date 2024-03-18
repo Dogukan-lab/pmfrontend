@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/DTOs/pm_user.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/presentation/states/login/login_state.dart';
-import 'package:pmfrontend/presentation/states/page_state.dart';
+import 'package:pmfrontend/presentation/states/other/page_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:pmfrontend/presentation/states/login/register_state.dart';
 
@@ -25,7 +25,7 @@ void requestLogin(WidgetRef ref) async {
 
   if (response != null && response.statusCode == HttpStatus.ok) {
     ref.read(pageProvider.notifier).setPage(ref, Pages.home);
-    ref.read(profileProvider.notifier).loadProfile(parseLoginJson(response.body));
+    ref.read(profileProvider.notifier).loadProfileState(parseLoginJson(response.body));
   } else {
     loginNotifier.changeEnum(LoginStateEnum.incorrect);
     await Future.delayed(const Duration(seconds: 2));
@@ -47,7 +47,7 @@ void requestRegistration(WidgetRef ref) async {
 
   if (response != null && response.statusCode == HttpStatus.ok) {
     ref.read(pageProvider.notifier).setPage(ref, Pages.home);
-    ref.read(profileProvider.notifier).loadProfile(parseLoginJson(response.body));
+    ref.read(profileProvider.notifier).loadProfileState(parseLoginJson(response.body));
   } else {
     registerNotifier.changeEnum(RegisterStateEnum.incorrect);
     await Future.delayed(const Duration(seconds: 2));

@@ -3,13 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
 import 'package:pmfrontend/domain/usecases/get_searched_users_usecase.dart';
 import 'package:pmfrontend/presentation/molecules/home/own_profile_card.dart';
-import 'package:pmfrontend/presentation/organisms/left/settings.dart';
+import 'package:pmfrontend/presentation/pages/settings.dart';
 import 'package:pmfrontend/presentation/organisms/main/chat_screen.dart';
 import 'package:pmfrontend/presentation/organisms/main/profile_details.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/organisms/left/chat_list.dart';
+import 'package:pmfrontend/presentation/organisms/chat_list.dart';
 import 'package:pmfrontend/presentation/organisms/main/home_screen.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
+import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -60,7 +61,7 @@ class HomePage extends ConsumerWidget {
           color: Cols.grey22.withAlpha(225),
           child: Consumer(
             builder: (_, ref, child) {
-              final state = ref.watch(settingsState);
+              final state = ref.watch(settingsVisibleState);
               return state ? const Settings() : const SizedBox.shrink();
             },
           ),

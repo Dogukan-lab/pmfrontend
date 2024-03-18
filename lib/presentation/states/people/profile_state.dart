@@ -41,15 +41,17 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
           friends: [],
         ));
 
-  void loadProfile(ProfileState profile) {
+  void loadProfileState(ProfileState profile) {
     state = profile;
   }
 
   void addFriend(Profile friend) => state = state.copyWith(friends: state.friends + [friend]);
-
   void removeFriend(Profile friend) => state = state.copyWith(
         friends: state.friends.where((user) => user.username != friend.username).toList(),
       );
+
+  void updateUsername(String name) => state = state.copyWith(profile: state.profile.copyWith(username: name));
+  void updateStatus(String name) => state = state.copyWith(profile: state.profile.copyWith(username: name));
 }
 
 final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((ref) => ProfileNotifier());
