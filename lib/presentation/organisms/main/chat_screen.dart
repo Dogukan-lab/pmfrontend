@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/presentation/atoms/background_screen.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
@@ -19,6 +20,9 @@ class ChatScreen extends ConsumerWidget {
           Expanded(
             child: Container(
               color: Cols.grey33,
+              child: const BackgroundScreen(
+                child: SizedBox.expand(),
+              ),
             ),
           ),
         ],
