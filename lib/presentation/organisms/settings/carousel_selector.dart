@@ -10,6 +10,7 @@ class CarouselSelector extends StatefulWidget {
     super.key,
     required this.amount,
     required this.fraction,
+    required this.enlargeFactor,
     required this.initial,
     required this.onChange,
     required this.child,
@@ -17,6 +18,7 @@ class CarouselSelector extends StatefulWidget {
 
   final int amount;
   final double fraction;
+  final double enlargeFactor;
   final int Function(WidgetRef ref) initial;
   final void Function(
     SettingsState state,
@@ -51,6 +53,9 @@ class _CarouselSelectorState extends State<CarouselSelector> {
                 final notifier = ref.read(settingsState.notifier);
                 widget.onChange(state, notifier, index);
               },
+              enlargeCenterPage: true,
+              enlargeFactor: widget.enlargeFactor,
+              enlargeStrategy: CenterPageEnlargeStrategy.zoom,
               initialPage: initial == -1 ? 0 : initial,
             ),
           );

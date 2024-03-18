@@ -42,6 +42,7 @@ class SettingsScreen extends ConsumerWidget {
                 CarouselSelector(
                   amount: amountOfIcons,
                   fraction: 1 / 5.5,
+                  enlargeFactor: 0.2,
                   initial: (ref) => ref.read(settingsState).current.icon,
                   onChange: (state, notifier, index) => notifier.updateNext(state.next.copyWith(icon: index)),
                   child: (index) => Padding(
@@ -55,6 +56,7 @@ class SettingsScreen extends ConsumerWidget {
                 CarouselSelector(
                   amount: amountOfBackgrounds,
                   fraction: 1 / 4,
+                  enlargeFactor: 0.3,
                   initial: (ref) => ref.read(settingsState).current.background,
                   onChange: (state, notifier, index) => notifier.updateNext(state.next.copyWith(background: index)),
                   child: (index) => Image.asset(
