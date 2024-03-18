@@ -62,7 +62,7 @@ class HomePage extends ConsumerWidget {
           child: Consumer(
             builder: (_, ref, child) {
               final state = ref.watch(settingsVisibleState);
-              return state ? const Settings() : const SizedBox.shrink();
+              return state ? const SettingsScreen() : const SizedBox.shrink();
             },
           ),
         )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
+import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class SettingsTextfields extends ConsumerStatefulWidget {
@@ -36,7 +37,11 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             ),
             child: TextField(
               controller: _usernameController,
-              onChanged: (value) => ref.read(profileProvider.notifier).updateUsername(value),
+              onChanged: (value) {
+                final state = ref.read(settingsState);
+                final notifier = ref.read(settingsState.notifier);
+                notifier.updateNext(state.next.copyWith(username: value));
+              },
               style: Styles.gg,
               cursorColor: Cols.grey107,
               decoration: InputDecoration(
@@ -56,7 +61,11 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             ),
             child: TextField(
               controller: _statusController,
-              onChanged: (value) => ref.read(profileProvider.notifier).updateUsername(value),
+              onChanged: (value) {
+                final state = ref.read(settingsState);
+                final notifier = ref.read(settingsState.notifier);
+                notifier.updateNext(state.next.copyWith(status: value));
+              },
               style: Styles.gg,
               cursorColor: Cols.grey107,
               decoration: InputDecoration(

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/domain/usecases/save_settings_usecase.dart';
 import 'package:pmfrontend/presentation/atoms/home_page_header.dart';
 import 'package:pmfrontend/presentation/organisms/settings/settings_textfields.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 
-class Settings extends ConsumerWidget {
-  const Settings({super.key});
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,8 +16,10 @@ class Settings extends ConsumerWidget {
       children: [
         GestureDetector(
           onTap: () {
-            final notifier = ref.read(settingsVisibleState.notifier);
-            notifier.state = !notifier.state;
+            final settingsScreen = ref.read(settingsVisibleState.notifier);
+            settingsScreen.state = !settingsScreen.state;
+
+            saveSettingsUsecase(ref);
           },
         ),
         Padding(
@@ -25,10 +28,7 @@ class Settings extends ConsumerWidget {
             color: Cols.grey38,
             child: const Column(
               children: [
-                //Header
                 HomePageHeader('Settings', Cols.grey29),
-
-                //List
                 SettingsTextfields(),
               ],
             ),
