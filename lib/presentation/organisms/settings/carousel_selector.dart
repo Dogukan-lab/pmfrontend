@@ -44,7 +44,14 @@ class _CarouselSelectorState extends State<CarouselSelector> {
           return CarouselSlider.builder(
             itemCount: widget.amount,
             carouselController: _controller,
-            itemBuilder: (_, index, __) => widget.child(index),
+            itemBuilder: (_, index, __) => GestureDetector(
+              onTap: () => _controller.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 333),
+                curve: Curves.easeInOut,
+              ),
+              child: widget.child(index),
+            ),
             options: CarouselOptions(
               viewportFraction: widget.fraction,
               height: Sizes.largePlus,
