@@ -56,6 +56,7 @@ class ChatScreen extends ConsumerWidget {
                 hint: 'Message ${state.profile.username}',
                 hintStyle: Styles.ggGrey,
                 clearOnSubmit: true,
+                requestFocus: true,
                 init: (controller) {},
                 onChanged: (controller) {},
                 onSubmitted: (value) => sendMessageUsecase(ref, value),

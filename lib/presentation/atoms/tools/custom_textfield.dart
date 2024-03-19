@@ -12,6 +12,7 @@ class CustomTextField extends StatefulWidget {
     this.hint,
     this.hintStyle,
     this.clearOnSubmit = false,
+    this.requestFocus = false,
     required this.init,
     required this.onChanged,
     this.onSubmitted,
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
   final String? hint;
   final TextStyle? hintStyle;
   final bool clearOnSubmit;
+  final bool requestFocus;
   final void Function(TextEditingController controller) init;
   final void Function(String value) onChanged;
   final void Function(String value)? onSubmitted;
@@ -44,6 +46,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    FocusNode? focusNode;
+    if (widget.requestFocus) {
+      focusNode = FocusNode();
+      focusNode.requestFocus();
+    }
+
     return Container(
       width: widget.width,
       height: widget.height,
@@ -66,6 +74,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           contentPadding: const EdgeInsets.symmetric(horizontal: Pad.small),
           border: InputBorder.none,
         ),
+        focusNode: widget.requestFocus ? focusNode : null,
         obscureText: widget.obscure,
         enableSuggestions: !widget.obscure,
         autocorrect: !widget.obscure,
