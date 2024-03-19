@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/DTOs/pm_user.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/main.dart';
 import 'package:pmfrontend/presentation/states/login/login_state.dart';
 import 'package:pmfrontend/presentation/states/other/page_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
@@ -57,6 +58,8 @@ void requestRegistration(WidgetRef ref) async {
 
 ProfileState parseLoginJson(String jsonString) {
   Map<String, dynamic> jsonMap = json.decode(jsonString);
+  apiToken = jsonMap['token'];
+
   ProfileState state = ProfileState.fromJson(jsonMap);
   return state;
 }
