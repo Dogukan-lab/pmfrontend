@@ -9,10 +9,16 @@ import 'package:pmfrontend/presentation/states/other/page_state.dart';
 import 'package:pmfrontend/presentation/states/login/register_state.dart';
 import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
+import 'dart:html' as html;
 
 String apiToken = '';
 
 void main() {
+  html.window.onUnload.listen((html.Event event) {
+    print('CLOSE EVENT');
+    print(event.toString());
+  });
+
   runApp(
     ProviderScope(
       child: MaterialApp(
@@ -63,4 +69,17 @@ void main() {
       ),
     ),
   );
+
+  // print('Start listen');
+  // AppLifecycleListener(
+  //   onDetach: () => print('onDetatch'),
+  //   onExitRequested: () async {
+  //     print('onExitRequested');
+  //     return AppExitResponse.exit;
+  //   },
+  //   onHide: () => print('onHide'),
+  //   onInactive: () => print('onInactive'),
+  //   onStateChange: (value) => print('Value: ${value.index}'),
+  // );
+  // print('Listening');
 }
