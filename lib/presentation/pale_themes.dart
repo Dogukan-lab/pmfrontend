@@ -30,6 +30,7 @@ abstract class Styles {
   static TextStyle ggGrey = gg.copyWith(color: Cols.grey107);
 
   static TextStyle header = trajan.copyWith(fontSize: 30);
+  static TextStyle ggHeader = gg.copyWith(fontWeight: FontWeight.w700);
 }
 
 //Radii
@@ -56,8 +57,9 @@ abstract class Sizes {
   static const double mediumMinus = 75;
   static const double medium = 100;
   static const double mediumPlus = 150;
-  static const double largeMinus = 200;
-  static const double large = 250;
-  static const double largePlus = 300;
+  static const double largeMinus = 175;
+  static const double large = 200;
+  static const double largePlus = 250;
+  static const double hugeMinus = 300;
   static const double huge = 500;
 }

@@ -15,8 +15,7 @@ String apiToken = '';
 
 void main() {
   html.window.onUnload.listen((html.Event event) {
-    print('CLOSE EVENT');
-    print(event.toString());
+    print('CLOSE EVENT: ${event.toString()}');
   });
 
   runApp(
@@ -69,17 +68,4 @@ void main() {
       ),
     ),
   );
-
-  // print('Start listen');
-  // AppLifecycleListener(
-  //   onDetach: () => print('onDetatch'),
-  //   onExitRequested: () async {
-  //     print('onExitRequested');
-  //     return AppExitResponse.exit;
-  //   },
-  //   onHide: () => print('onHide'),
-  //   onInactive: () => print('onInactive'),
-  //   onStateChange: (value) => print('Value: ${value.index}'),
-  // );
-  // print('Listening');
 }

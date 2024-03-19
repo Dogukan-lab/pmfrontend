@@ -22,7 +22,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomTextField(
-            width: Sizes.largeMinus,
+            width: Sizes.large,
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,
@@ -37,7 +37,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             onSubmitted: (_) => widget.submit(),
           ),
           CustomTextField(
-            width: Sizes.largePlus,
+            width: Sizes.hugeMinus,
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,
@@ -52,7 +52,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             onSubmitted: (_) => widget.submit(),
           ),
           CustomTextField(
-            width: Sizes.largePlus,
+            width: Sizes.hugeMinus,
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,

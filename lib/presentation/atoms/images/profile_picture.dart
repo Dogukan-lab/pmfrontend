@@ -3,28 +3,31 @@ import 'package:pmfrontend/data/repositories/icon_repository.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 
 class ProfilePicture extends StatelessWidget {
-  const ProfilePicture(this.icon, this.size, {super.key});
+  const ProfilePicture(this.icon, this.size, this.outlineSize, {super.key});
 
   final int icon;
   final double size;
+  final double outlineSize;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Cols.grey48,
-          width: size / 25,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(size),
+            color: Cols.grey48,
+          ),
         ),
-        borderRadius: BorderRadius.circular(size),
-        backgroundBlendMode: BlendMode.src,
-        color: Cols.grey48,
-      ),
-      child: Image.asset(
-        iconRepository.getIcon(icon),
-        width: size,
-        height: size,
-      ),
+        Image.asset(
+          iconRepository.getIcon(icon),
+          width: size - outlineSize,
+          height: size - outlineSize,
+        ),
+      ],
     );
   }
 }

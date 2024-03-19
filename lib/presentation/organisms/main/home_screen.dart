@@ -26,7 +26,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Container(
       color: Cols.grey33,
       child: BackgroundScreen(
-        offset: const EdgeInsets.only(right: Sizes.largeMinus),
+        offset: const EdgeInsets.only(right: Sizes.large),
         child: Column(
           children: [
             //Header

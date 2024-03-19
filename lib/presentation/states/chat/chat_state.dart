@@ -14,12 +14,15 @@ class ChatState {
 
   final Profile profile;
   final List<Message> messages;
+
+  ChatState addMessage(Message message) => ChatState(profile, messages + [message]);
 }
 
 class ChatNotifier extends StateNotifier<ChatState> {
   ChatNotifier() : super(ChatState(const Profile.empty('...'), []));
 
   loadChat(ChatState chat) => state = chat;
+  addMessage(Message message) => state = state.addMessage(message);
 }
 
 final chatProvider = StateNotifierProvider<ChatNotifier, ChatState>((ref) => ChatNotifier());

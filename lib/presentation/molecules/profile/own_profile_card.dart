@@ -43,6 +43,7 @@ class OwnProfileCard extends StatelessWidget {
                       icon: state.icon,
                       online: true,
                       size: Sizes.mediumMinus,
+                      outlineSize: Pad.smallPlus,
                     );
                   },
                 ),

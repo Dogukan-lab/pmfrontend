@@ -11,6 +11,7 @@ class ProfileCard extends StatelessWidget {
     required this.icon,
     required this.online,
     this.size = Sizes.smallPlus,
+    this.outlineSize = Pad.small,
   });
 
   final int icon;
@@ -18,6 +19,7 @@ class ProfileCard extends StatelessWidget {
   final String text;
   final bool online;
   final double size;
+  final double outlineSize;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ProfileCard extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-            ProfilePicture(icon, size),
+            ProfilePicture(icon, size, outlineSize),
             Container(
               decoration: BoxDecoration(
                 border: Border.all(

@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
     this.obscure = false,
     this.hint,
     this.hintStyle,
+    this.clearOnSubmit = false,
     required this.init,
     required this.onChanged,
     this.onSubmitted,
@@ -23,6 +24,7 @@ class CustomTextField extends StatefulWidget {
   final bool obscure;
   final String? hint;
   final TextStyle? hintStyle;
+  final bool clearOnSubmit;
   final void Function(TextEditingController controller) init;
   final void Function(String value) onChanged;
   final void Function(String value)? onSubmitted;
@@ -52,7 +54,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: TextField(
         controller: _controller,
         onChanged: widget.onChanged,
-        onSubmitted: widget.onSubmitted,
+        onSubmitted: (value) {
+          if (widget.clearOnSubmit) _controller.clear();
+          if (widget.onSubmitted != null) widget.onSubmitted!(value);
+        },
         style: widget.style,
         cursorColor: widget.style.color,
         decoration: InputDecoration(

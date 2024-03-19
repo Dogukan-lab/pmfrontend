@@ -47,7 +47,7 @@ class _CarouselSelectorState extends State<CarouselSelector> {
             itemBuilder: (_, index, __) => widget.child(index),
             options: CarouselOptions(
               viewportFraction: widget.fraction,
-              height: Sizes.large,
+              height: Sizes.largePlus,
               onPageChanged: (index, _) {
                 final state = ref.read(settingsState);
                 final notifier = ref.read(settingsState.notifier);

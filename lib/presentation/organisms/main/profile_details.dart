@@ -24,8 +24,8 @@ class ProfileDetails extends ConsumerWidget {
               children: [
                 //Icon
                 Padding(
-                  padding: const EdgeInsets.only(top: Pad.mediumPlus, bottom: Pad.mediumMinus),
-                  child: ProfilePicture(profile.icon, Sizes.large),
+                  padding: const EdgeInsets.only(top: Pad.mediumMinus, bottom: Pad.mediumMinus),
+                  child: ProfilePicture(profile.icon, Sizes.hugeMinus, Pad.mediumPlus),
                 ),
 
                 //Name and status
@@ -36,7 +36,7 @@ class ProfileDetails extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: Pad.mediumMinus),
                   child: Container(
-                    width: Sizes.large,
+                    width: Sizes.largePlus,
                     height: Pad.small,
                     decoration: BoxDecoration(
                       color: Cols.grey48,

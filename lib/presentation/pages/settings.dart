@@ -29,7 +29,7 @@ class SettingsScreen extends ConsumerWidget {
           onTap: submit,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.largePlus, vertical: Sizes.medium),
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.hugeMinus, vertical: Sizes.medium),
           child: Container(
             color: Cols.grey38,
             child: Column(
@@ -47,7 +47,7 @@ class SettingsScreen extends ConsumerWidget {
                   onChange: (state, notifier, index) => notifier.updateNext(state.next.copyWith(icon: index)),
                   child: (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Pad.smallPlus),
-                    child: ProfilePicture(index, Sizes.largeMinus),
+                    child: ProfilePicture(index, Sizes.largeMinus, Sizes.small),
                   ),
                 ),
                 //Padding
@@ -61,8 +61,8 @@ class SettingsScreen extends ConsumerWidget {
                   onChange: (state, notifier, index) => notifier.updateNext(state.next.copyWith(background: index)),
                   child: (index) => Image.asset(
                     backgroundRepository.getBackground(index),
-                    width: Sizes.largeMinus,
-                    height: Sizes.largeMinus,
+                    width: Sizes.large,
+                    height: Sizes.large,
                   ),
                 ),
                 //Padding
