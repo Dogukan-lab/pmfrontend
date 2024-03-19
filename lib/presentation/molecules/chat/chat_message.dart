@@ -21,8 +21,10 @@ class ChatMessage extends StatelessWidget {
         child: Row(
           children: [
             if (withPadding)
-              const SizedBox(
+              Container(
                 width: Sizes.mediumMinus,
+                alignment: Alignment.center,
+                child: isHovering ? Text('${message.time.hour}: ${message.time.minute}', style: Styles.ggGrey) : null,
               ),
             Text(
               message.data,
