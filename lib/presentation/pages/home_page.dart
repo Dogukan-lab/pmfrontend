@@ -1,8 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
-import 'package:pmfrontend/domain/usecases/get_searched_users_usecase.dart';
-import 'package:pmfrontend/presentation/molecules/home/own_profile_card.dart';
+import 'package:pmfrontend/presentation/molecules/profile/own_profile_card.dart';
 import 'package:pmfrontend/presentation/pages/settings.dart';
 import 'package:pmfrontend/presentation/organisms/main/chat_screen.dart';
 import 'package:pmfrontend/presentation/organisms/main/profile_details.dart';
@@ -73,6 +72,5 @@ class HomePage extends ConsumerWidget {
   void startupProcedure(WidgetRef ref) async {
     await Future.delayed(Duration.zero);
     getChatList(ref);
-    getSearchedUsers(ref);
   }
 }

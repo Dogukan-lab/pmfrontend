@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/domain/usecases/get_searched_users_usecase.dart';
 import 'package:pmfrontend/presentation/atoms/images/background_screen.dart';
-import 'package:pmfrontend/presentation/atoms/headers/hallownest_header.dart';
 import 'package:pmfrontend/presentation/atoms/headers/home_page_header.dart';
 import 'package:pmfrontend/presentation/atoms/tools/custom_textfield.dart';
-import 'package:pmfrontend/presentation/molecules/home/home_list_item.dart';
+import 'package:pmfrontend/presentation/molecules/home/friends_list.dart';
+import 'package:pmfrontend/presentation/molecules/home/searched_list.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
-import 'package:pmfrontend/presentation/states/people/online_users_state.dart';
-import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
-class HomeScreen extends StatefulWidget {
+final searchedUsersProvider = StateProvider<List<Profile>>((ref) => []);
+
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
   String _searchTarget = '';
 
   @override
@@ -37,82 +38,23 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomTextField(
                 height: Sizes.small,
                 backgroundColor: Cols.grey48,
-                style: Styles.ggGrey,
+                style: Styles.gg,
+                hint: 'Search shades',
+                hintStyle: Styles.ggGrey,
                 init: (controller) {},
-                onChanged: (value) => setState(() => _searchTarget = value),
+                onChanged: (value) {
+                  setState(() {
+                    _searchTarget = value;
+                  });
+
+                  if (_searchTarget.length >= 4) getSearchedUsers(ref, _searchTarget);
+                },
               ),
             ),
 
             //Content
             Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Consumer(
-                  builder: (_, ref, child) {
-                    final friends = List<Profile>.from(ref.watch(profileProvider).friends);
-                    final searched = List<Profile>.from(ref.watch(searchedUsersProvider));
-
-                    //Loading
-                    if (searched.isEmpty) {
-                      return const Padding(
-                        padding: EdgeInsets.only(top: Pad.medium),
-                        child: SizedBox(
-                          width: Sizes.smallPlus,
-                          height: Sizes.smallPlus,
-                          child: CircularProgressIndicator(
-                            color: Cols.grey75,
-                            strokeWidth: 7.5,
-                          ),
-                        ),
-                      );
-                    }
-
-                    //Remove duplicates
-                    searched.removeWhere((user) {
-                      for (var other in friends) {
-                        if (user.username == other.username) return true;
-                      }
-
-                      return false;
-                    });
-
-                    //Sorting
-                    friends.sort((a, b) => a.username.compareTo(b.username));
-                    searched.sort((a, b) => a.username.compareTo(b.username));
-
-                    //Searching
-                    friends.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
-                    searched.retainWhere((user) => user.username.toLowerCase().contains(_searchTarget.toLowerCase()));
-
-                    //List
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(Pad.smallPlus, Pad.smallPlus, Pad.smallPlus, 0),
-                      child: Column(
-                        children: [
-                          //Friends
-                          const HallownestHeader('Friendly shades'),
-                          for (int i = 0; i < friends.length; i++)
-                            HomeListItem(
-                              user: friends[i],
-                              isLast: i == friends.length - 1,
-                            ),
-
-                          //Divider
-                          const SizedBox(height: Pad.smallPlus),
-
-                          //Other
-                          const HallownestHeader('Other shades'),
-                          for (int i = 0; i < searched.length; i++)
-                            HomeListItem(
-                              user: searched[i],
-                              isLast: i == searched.length - 1,
-                            ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
+              child: _searchTarget.length < 4 ? const FriendsList() : const SearchedList(),
             )
           ],
         ),

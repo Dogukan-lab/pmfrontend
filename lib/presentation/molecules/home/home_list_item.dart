@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/domain/usecases/add_remove_friend_usecase.dart';
 import 'package:pmfrontend/presentation/atoms/images/custom_icon_button.dart';
 import 'package:pmfrontend/presentation/atoms/tools/hover_widget.dart';
-import 'package:pmfrontend/presentation/molecules/home/profile_card.dart';
+import 'package:pmfrontend/presentation/molecules/profile/profile_card.dart';
 import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
@@ -64,11 +65,10 @@ class HomeListItem extends StatelessWidget {
                               (other) => other.username == user.username,
                             ) !=
                         -1;
-                    final profile = ref.read(profileProvider.notifier);
 
                     return HoverWidget(
                       builder: (isHovering) => GestureDetector(
-                        onTap: () => isFriend ? profile.removeFriend(user) : profile.addFriend(user),
+                        onTap: () => isFriend ? removeFriendUsecase(ref, user) : addFriendUsecase(ref, user),
                         child: CustomIconButton(
                           isFriend ? FontAwesomeIcons.minus : FontAwesomeIcons.plus,
                           iconSize: Pad.mediumPlus,
