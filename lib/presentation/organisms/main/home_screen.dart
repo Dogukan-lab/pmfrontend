@@ -24,7 +24,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Cols.grey33,
+      color: Cols.grey29,
       child: BackgroundScreen(
         offset: const EdgeInsets.only(right: Sizes.large),
         child: Column(

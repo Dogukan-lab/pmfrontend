@@ -21,7 +21,7 @@ class ChatScreen extends ConsumerWidget {
     return Expanded(
       flex: 5,
       child: Container(
-        color: Cols.grey33,
+        color: Cols.grey29,
         child: Column(
           children: [
             HomePageHeader(state.profile.username, Cols.grey38),
