@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/atoms/headers/hallownest_header.dart';
@@ -21,12 +22,29 @@ class ProfileDetails extends ConsumerWidget {
           Expanded(
             child: Column(
               children: [
+                //Icon
                 Padding(
                   padding: const EdgeInsets.only(top: Pad.mediumPlus, bottom: Pad.mediumMinus),
                   child: ProfilePicture(profile.icon, Sizes.large),
                 ),
+
+                //Name and status
                 HallownestHeader(profile.username, size: 45, center: true),
-                HallownestHeader(profile.status, size: 25, center: true),
+                HallownestHeader(profile.status, size: 20, center: true),
+
+                //Bio
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: Pad.mediumMinus),
+                  child: Container(
+                    width: Sizes.large,
+                    height: Pad.small,
+                    decoration: BoxDecoration(
+                      color: Cols.grey48,
+                      borderRadius: BorderRadius.circular(Radii.small),
+                    ),
+                  ),
+                ),
+                HallownestHeader(profile.bio, size: 25, center: true),
               ],
             ),
           ),

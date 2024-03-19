@@ -13,6 +13,7 @@ void saveSettingsUsecase(WidgetRef ref) async {
       profile: profile.profile.copyWith(
         username: settings.next.username,
         status: settings.next.status,
+        bio: settings.next.bio,
         icon: settings.next.icon,
       ),
       background: settings.next.background,

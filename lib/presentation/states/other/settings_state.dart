@@ -2,22 +2,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 class Settings {
-  Settings({required this.username, required this.status, required this.icon, required this.background});
+  Settings({required this.username, required this.status, required this.bio, required this.icon, required this.background});
 
   final String username;
   final String status;
+  final String bio;
   final int icon;
   final int background;
 
   Settings copyWith({
     String? username,
     String? status,
+    String? bio,
     int? icon,
     int? background,
   }) {
     return Settings(
       username: username ?? this.username,
       status: status ?? this.status,
+      bio: bio ?? this.bio,
       icon: icon ?? this.icon,
       background: background ?? this.background,
     );
@@ -45,6 +48,7 @@ final settingsState = StateNotifierProvider<SettingsNotifier, SettingsState>((re
   return SettingsNotifier(Settings(
     username: state.profile.username,
     status: state.profile.status,
+    bio: state.profile.bio,
     icon: state.profile.icon,
     background: state.background,
   ));

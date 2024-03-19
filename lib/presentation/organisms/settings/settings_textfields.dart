@@ -22,7 +22,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           CustomTextField(
-            width: Sizes.largePlus,
+            width: Sizes.largeMinus,
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,
@@ -37,7 +37,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             onSubmitted: (_) => widget.submit(),
           ),
           CustomTextField(
-            width: Sizes.huge,
+            width: Sizes.largePlus,
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,
@@ -49,7 +49,22 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
               final notifier = ref.read(settingsState.notifier);
               notifier.updateNext(state.next.copyWith(status: value));
             },
-            onSubmitted: (_) => widget.submit,
+            onSubmitted: (_) => widget.submit(),
+          ),
+          CustomTextField(
+            width: Sizes.largePlus,
+            height: Sizes.small,
+            backgroundColor: Cols.grey48,
+            style: Styles.gg,
+            init: (controller) => controller.text = ref.read(profileProvider).profile.bio,
+            hint: 'Bio',
+            hintStyle: Styles.ggGrey,
+            onChanged: (value) {
+              final state = ref.read(settingsState);
+              final notifier = ref.read(settingsState.notifier);
+              notifier.updateNext(state.next.copyWith(bio: value));
+            },
+            onSubmitted: (_) => widget.submit(),
           ),
         ],
       ),
