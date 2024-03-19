@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 import 'package:pmfrontend/presentation/atoms/images/profile_picture.dart';
 import 'package:pmfrontend/presentation/atoms/tools/hover_widget.dart';
 import 'package:pmfrontend/presentation/molecules/chat/chat_message.dart';
@@ -7,8 +8,9 @@ import 'package:pmfrontend/presentation/pale_themes.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 
 class ChatHeader extends StatelessWidget {
-  const ChatHeader(this.profile, this.message, {super.key, this.isFirst = false});
+  const ChatHeader(this.index, this.profile, this.message, {super.key, this.isFirst = false});
 
+  final int index;
   final Profile profile;
   final Message message;
   final bool isFirst;
@@ -37,14 +39,15 @@ class ChatHeader extends StatelessWidget {
                       ),
                       const SizedBox(width: Pad.small),
                       Text(
-                        '${message.time.day}/${message.time.month}/${message.time.year} ${message.time.hour}: ${message.time.minute}',
+                        formatDateTime(message.time, false),
                         style: Styles.ggGrey,
                       ),
                     ],
                   ),
-                  ChatMessage(message, withPadding: false),
+                  ChatMessage(index, message, withPadding: false),
                 ],
               ),
+              if (isHovering) ...removeButton(index),
             ],
           ),
         ),

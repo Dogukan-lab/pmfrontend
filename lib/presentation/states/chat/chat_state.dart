@@ -16,6 +16,11 @@ class ChatState {
   final List<Message> messages;
 
   ChatState addMessage(Message message) => ChatState(profile, messages + [message]);
+  ChatState removeMessage(int index) {
+    final list = List<Message>.from(messages);
+    list.removeAt(index);
+    return ChatState(profile, list);
+  }
 }
 
 class ChatNotifier extends StateNotifier<ChatState> {
@@ -23,6 +28,7 @@ class ChatNotifier extends StateNotifier<ChatState> {
 
   loadChat(ChatState chat) => state = chat;
   addMessage(Message message) => state = state.addMessage(message);
+  removeMessage(int index) => state = state.removeMessage(index);
 }
 
 final chatProvider = StateNotifierProvider<ChatNotifier, ChatState>((ref) => ChatNotifier());

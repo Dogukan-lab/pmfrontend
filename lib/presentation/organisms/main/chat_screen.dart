@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/domain/usecases/send_message_usecase.dart';
+import 'package:pmfrontend/domain/usecases/send_delete_message_usecase.dart';
 import 'package:pmfrontend/presentation/atoms/images/background_screen.dart';
 import 'package:pmfrontend/presentation/atoms/headers/home_page_header.dart';
 import 'package:pmfrontend/presentation/atoms/tools/custom_textfield.dart';
@@ -33,14 +33,15 @@ class ChatScreen extends ConsumerWidget {
                     children: [
                       if (state.messages.isNotEmpty)
                         ChatHeader(
+                          0,
                           state.messages[0].isSender ? profile : state.profile,
                           state.messages[0],
                           isFirst: true,
                         ),
                       for (int i = 1; i < state.messages.length; i++)
                         state.messages[i].isSender != state.messages[i - 1].isSender
-                            ? ChatHeader(state.messages[i].isSender ? profile : state.profile, state.messages[i])
-                            : ChatMessage(state.messages[i]),
+                            ? ChatHeader(i, state.messages[i].isSender ? profile : state.profile, state.messages[i])
+                            : ChatMessage(i, state.messages[i]),
                     ],
                   ),
                 ),

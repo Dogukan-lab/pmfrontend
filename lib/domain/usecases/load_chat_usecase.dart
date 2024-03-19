@@ -20,3 +20,9 @@ void loadChat(WidgetRef ref, Profile profile) async {
 
   chat.loadChat(ChatState(profile, messages));
 }
+
+String formatDateTime(DateTime time, bool onlyTime) {
+  String result = '${time.hour}: ${time.minute}';
+  if (!onlyTime) result = '${time.day}/${time.month}/${time.year} $result';
+  return result;
+}
