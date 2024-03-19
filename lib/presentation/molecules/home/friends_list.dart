@@ -44,7 +44,7 @@ class FriendsList extends StatelessWidget {
             child: Column(
               children: [
                 //Online
-                const HallownestHeader('Offlien shades'),
+                const HallownestHeader('Online shades'),
                 for (int i = 0; i < online.length; i++)
                   HomeListItem(
                     user: friends[i],
@@ -55,7 +55,7 @@ class FriendsList extends StatelessWidget {
                 const SizedBox(height: Pad.smallPlus),
 
                 //Offline
-                const HallownestHeader('Online shades'),
+                const HallownestHeader('Offline shades'),
                 for (int i = 0; i < offline.length; i++)
                   HomeListItem(
                     user: offline[i],

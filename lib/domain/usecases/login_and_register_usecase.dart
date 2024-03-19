@@ -16,9 +16,9 @@ void requestLogin(WidgetRef ref) async {
 
   loginNotifier.changeEnum(LoginStateEnum.waiting);
 
-  final response = await serverRequest(
+  final response = await apiPost(
     'PmAuth/Login',
-    jsonEncode(PmUser(
+    params: jsonEncode(PmUser(
       username: loginState.username,
       password: loginState.password,
     ).toJson()),
@@ -38,9 +38,9 @@ void requestRegistration(WidgetRef ref) async {
   final registerNotifier = ref.read(registerProvider.notifier);
   final registerState = ref.read(registerProvider);
 
-  final response = await serverRequest(
+  final response = await apiPost(
     'PmAuth/Register',
-    jsonEncode(PmUser(
+    params: jsonEncode(PmUser(
       username: registerState.username,
       password: registerState.password,
     ).toJson()),
