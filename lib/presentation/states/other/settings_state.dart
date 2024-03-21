@@ -25,6 +25,16 @@ class Settings {
       background: background ?? this.background,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'username': username,
+        'isOnline': true,
+        'bio': bio,
+        'status': status,
+        'profileIcon': icon,
+        'background': background,
+        'friends': [],
+      };
 }
 
 class SettingsState {
