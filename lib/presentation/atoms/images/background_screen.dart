@@ -8,11 +8,9 @@ import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 class BackgroundScreen extends StatelessWidget {
   const BackgroundScreen({
     super.key,
-    this.offset = EdgeInsets.zero,
     required this.child,
   });
 
-  final EdgeInsets offset;
   final Widget child;
 
   @override
@@ -23,7 +21,7 @@ class BackgroundScreen extends StatelessWidget {
         child,
         IgnorePointer(
           child: Padding(
-            padding: const EdgeInsets.all(Pad.mediumPlus).add(offset),
+            padding: const EdgeInsets.all(Pad.mediumPlus),
             child: Consumer(
               builder: (_, ref, __) {
                 final background = ref.watch(profileProvider).background;
