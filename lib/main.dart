@@ -17,7 +17,7 @@ String apiToken = '';
 void main() {
   html.window.onUnload.listen((html.Event event) async {
     print('CLOSE EVENT: ${event.toString()}');
-    await apiPost('PmUser/SetOnline', query: 'online=false');
+    apiPost('PmUser/SetOnline', query: 'online=false');
   });
 
   runApp(

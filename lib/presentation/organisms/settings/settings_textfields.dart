@@ -41,7 +41,7 @@ class _SettingsTextfieldsState extends ConsumerState<SettingsTextfields> {
             height: Sizes.small,
             backgroundColor: Cols.grey48,
             style: Styles.gg,
-            init: (controller) => controller.text = ref.read(profileProvider).profile.username,
+            init: (controller) => controller.text = ref.read(profileProvider).profile.status,
             hint: 'Status',
             hintStyle: Styles.ggGrey,
             onChanged: (value) {

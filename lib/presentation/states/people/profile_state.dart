@@ -31,6 +31,14 @@ class ProfileState {
       friends: (json['user']['friends'] as List<dynamic>).map((friendJson) => Profile.fromJson(friendJson)).toList(),
     );
   }
+
+  factory ProfileState.fromShallowJson(Map<String, dynamic> json) {
+    return ProfileState(
+      profile: Profile.fromJson(json),
+      background: json['background'] as int,
+      friends: (json['friends'] as List<dynamic>).map((friendJson) => Profile.fromJson(friendJson)).toList(),
+    );
+  }
 }
 
 class ProfileNotifier extends StateNotifier<ProfileState> {
