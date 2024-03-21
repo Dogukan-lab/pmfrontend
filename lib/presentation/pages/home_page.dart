@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
 import 'package:pmfrontend/domain/usecases/hub_connection_usecase.dart';
 import 'package:pmfrontend/presentation/molecules/profile/own_profile_card.dart';
@@ -76,9 +75,6 @@ class HomePage extends ConsumerWidget {
 
     //Get chats
     getChatList(ref);
-
-    //Post online status
-    apiPost('PmUser/SetOnline', query: 'online=true');
 
     //Hub
     startHubConnection(ref);

@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/main.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
-import 'package:signalr_netcore/hub_connection.dart';
-import 'package:signalr_netcore/hub_connection_builder.dart';
+import 'package:signalr_netcore/signalr_client.dart';
 
 HubHandler hubHandler = HubHandler();
 
@@ -16,20 +16,27 @@ class HubHandler {
 
   void init(WidgetRef ref, String username) async {
     var url = 'https://localhost:7056/chatHub';
-    _hub = HubConnectionBuilder().withUrl(url).build();
+
+    _hub = HubConnectionBuilder()
+        .withUrl(
+          url,
+          options: HttpConnectionOptions(accessTokenFactory: () async => apiToken),
+        )
+        .build();
     _hub.onclose(({error}) => print('Connection Closed: ${error.toString()}'));
     _hub.onreconnecting(({error}) => print("onreconnecting called"));
     _hub.onreconnected(({connectionId}) => print("onreconnected called"));
 
     _hub.on('ReceivePing', (params) async {
       if (params != null) {
-        final user = params[0];
-        if (user == username) {
-          final response = await apiGet('PmUser/GetUser', query: "username=$username");
+        for (final user in params) {
+          if (user == username || user == '*') {
+            final response = await apiGet('PmUser/GetUser', query: "username=$username");
 
-          if (response != null && response.statusCode == HttpStatus.ok) {
-            Map<String, dynamic> json = jsonDecode(response.body);
-            ref.read(profileProvider.notifier).loadProfileState(ProfileState.fromShallowJson(json));
+            if (response != null && response.statusCode == HttpStatus.ok) {
+              Map<String, dynamic> json = jsonDecode(response.body);
+              ref.read(profileProvider.notifier).loadProfileState(ProfileState.fromShallowJson(json));
+            }
           }
         }
       }

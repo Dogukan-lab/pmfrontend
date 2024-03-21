@@ -10,16 +10,10 @@ import 'package:pmfrontend/presentation/states/other/page_state.dart';
 import 'package:pmfrontend/presentation/states/login/register_state.dart';
 import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
-import 'dart:html' as html;
 
 String apiToken = '';
 
 void main() {
-  html.window.onUnload.listen((html.Event event) async {
-    print('CLOSE EVENT: ${event.toString()}');
-    apiPost('PmUser/SetOnline', query: 'online=false');
-  });
-
   runApp(
     ProviderScope(
       child: MaterialApp(
