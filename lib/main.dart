@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/presentation/pages/home_page.dart';
 import 'package:pmfrontend/presentation/pages/login_page.dart';
 import 'package:pmfrontend/presentation/states/login/login_state.dart';
@@ -14,8 +15,9 @@ import 'dart:html' as html;
 String apiToken = '';
 
 void main() {
-  html.window.onUnload.listen((html.Event event) {
+  html.window.onUnload.listen((html.Event event) async {
     print('CLOSE EVENT: ${event.toString()}');
+    await apiPost('PmUser/SetOnline', query: 'online=false');
   });
 
   runApp(

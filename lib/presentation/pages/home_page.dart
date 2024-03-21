@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
 import 'package:pmfrontend/presentation/molecules/profile/own_profile_card.dart';
 import 'package:pmfrontend/presentation/pages/settings.dart';
@@ -72,5 +73,7 @@ class HomePage extends ConsumerWidget {
   void startupProcedure(WidgetRef ref) async {
     await Future.delayed(Duration.zero);
     getChatList(ref);
+
+    apiPost('PmUser/SetOnline', query: 'online=true');
   }
 }
