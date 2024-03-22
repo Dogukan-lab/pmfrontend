@@ -3,8 +3,12 @@ import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 
 void sendMessageUsecase(WidgetRef ref, String message) async {
   ref.read(chatProvider.notifier).addMessage(Message(message, DateTime.now(), true));
+
+  //Ping Hub
 }
 
 void deleteMessageUsecase(WidgetRef ref, int index) async {
   ref.read(chatProvider.notifier).removeMessage(index);
+
+  //Ping Hub
 }

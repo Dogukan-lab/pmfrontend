@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
 import 'package:pmfrontend/main.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:signalr_netcore/signalr_client.dart';
@@ -36,6 +37,7 @@ class HubHandler {
             if (response != null && response.statusCode == HttpStatus.ok) {
               Map<String, dynamic> json = jsonDecode(response.body);
               ref.read(profileProvider.notifier).loadProfileState(ProfileState.fromShallowJson(json));
+              getChatList(ref);
             }
           }
         }
