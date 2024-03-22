@@ -33,8 +33,8 @@ class ChatListEntry {
     return ChatListEntry(
       json['chatId'] as int,
       user,
-      messages[0].data,
-      messages[0].time,
+      messages[messages.length - 1].data,
+      messages[messages.length - 1].time,
     );
   }
 }

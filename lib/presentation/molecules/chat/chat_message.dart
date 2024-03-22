@@ -29,10 +29,7 @@ class ChatMessage extends StatelessWidget {
               Container(
                 width: Sizes.mediumMinus,
                 alignment: Alignment.center,
-                child: isHovering
-                    ? Text(formatDateTime(message.time, true),
-                        style: Styles.ggGrey)
-                    : null,
+                child: isHovering ? Text(formatDateTime(message.time, true), style: Styles.ggGrey) : null,
               ),
             Text(
               message.data,
@@ -46,28 +43,29 @@ class ChatMessage extends StatelessWidget {
   }
 }
 
-List<Widget> removeButton(int index) => [
-      const Spacer(),
-      Padding(
-        padding: const EdgeInsets.only(right: Pad.small),
-        child: Consumer(
-          builder: (_, ref, child) => GestureDetector(
-            onTap: () => deleteMessageUsecase(ref, index),
-            child: child,
-          ),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Cols.grey48,
-              borderRadius: BorderRadius.all(Radius.circular(Radii.small)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Pad.smallMinus),
-              child: Text(
-                'Remove',
-                style: Styles.ggGrey,
-              ),
-            ),
-          ),
-        ),
-      ),
-    ];
+List<Widget> removeButton(int index) => [const SizedBox.shrink()]; 
+// [
+//       const Spacer(),
+//       Padding(
+//         padding: const EdgeInsets.only(right: Pad.small),
+//         child: Consumer(
+//           builder: (_, ref, child) => GestureDetector(
+//             onTap: () => deleteMessageUsecase(ref, index),
+//             child: child,
+//           ),
+//           child: Container(
+//             decoration: const BoxDecoration(
+//               color: Cols.grey48,
+//               borderRadius: BorderRadius.all(Radius.circular(Radii.small)),
+//             ),
+//             child: Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: Pad.smallMinus),
+//               child: Text(
+//                 'Remove',
+//                 style: Styles.ggGrey,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     ];

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/domain/usecases/hub_connection_usecase.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
@@ -9,7 +10,7 @@ void sendMessageUsecase(WidgetRef ref, String message, String targetUsername) as
   Message msg = Message(message, DateTime.now().toLocal(), true);
   ref.read(chatProvider.notifier).addMessage(msg);
 
-  final response = await apiPost(
+  await apiPost(
     'Chat/SendMessage',
     query: 'targetUsername=$targetUsername',
     params: jsonEncode(
@@ -17,9 +18,8 @@ void sendMessageUsecase(WidgetRef ref, String message, String targetUsername) as
     ),
   );
 
-  print(response!.body);
-
   //Ping Hub
+  pingHubUser(targetUsername);
 }
 
 void deleteMessageUsecase(WidgetRef ref, int index) async {
