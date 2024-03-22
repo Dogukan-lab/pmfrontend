@@ -45,7 +45,7 @@ class ChatList extends StatelessWidget {
                       for (final chat in state.chats)
                         HoverWidget(
                           builder: (isHovering) {
-                            final isSelected = state.selected != null && state.selected!.username == chat.profile.username;
+                            final isSelected = state.selected != null && state.selected == chat.profile.id;
 
                             return Padding(
                               padding: const EdgeInsets.only(left: Pad.smallPlus, right: Pad.smallPlus, top: Pad.smallPlus),

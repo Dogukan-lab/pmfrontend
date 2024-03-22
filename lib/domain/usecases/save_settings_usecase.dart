@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:convert';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/domain/usecases/hub_connection_usecase.dart';
+import 'package:pmfrontend/main.dart';
 import 'package:pmfrontend/presentation/states/other/settings_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
@@ -28,10 +30,14 @@ void saveSettingsUsecase(WidgetRef ref) async {
 
   settingsNotifier.swap();
 
-  await apiPost(
+  final response = await apiPost(
     'PmUser/UpdateUser',
     params: jsonEncode(settings.next.toJson()),
   );
+
+  if (response != null && response.statusCode == HttpStatus.ok) {
+    apiToken = response.body;
+  }
 
   pingHubUser('*');
 }

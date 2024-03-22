@@ -57,11 +57,11 @@ class ChatListState {
   ChatListState(this.chats, this.selected);
 
   final List<ChatListEntry> chats;
-  final Profile? selected;
+  final int? selected;
 
   ChatListState copyWith({
     List<ChatListEntry>? chats,
-    Profile? selected,
+    int? selected,
   }) {
     return ChatListState(
       chats ?? this.chats,
@@ -76,7 +76,7 @@ class ChatListNotifier extends StateNotifier<ChatListState> {
   void loadChats(List<ChatListEntry> chats) => state = ChatListState(chats, state.selected);
 
   void selectChat(Profile? profile, WidgetRef ref) {
-    state = ChatListState(state.chats, profile);
+    state = ChatListState(state.chats, profile?.id);
     if (profile != null) loadChat(ref, profile);
   }
 

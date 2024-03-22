@@ -11,7 +11,7 @@ void loadChat(WidgetRef ref, Profile profile) async {
   final chat = ref.read(chatProvider.notifier);
   final chatState = ref.read(chatListProvider);
 
-  final id = chatState.chats.firstWhere((element) => chatState.selected!.username == element.profile.username).chatId;
+  final id = chatState.chats.firstWhere((element) => chatState.selected == element.profile.id).chatId;
 
   final response = await apiGet('Chat/Chat', query: 'id=$id');
 

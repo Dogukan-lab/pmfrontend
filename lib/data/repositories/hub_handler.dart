@@ -59,7 +59,7 @@ class HubHandler {
               if (selected != null) {
                 loadChat(
                   ref,
-                  ref.read(chatListProvider).chats.firstWhere((chat) => chat.profile.username == selected.username).profile,
+                  ref.read(chatListProvider).chats.firstWhere((chat) => chat.profile.id == selected).profile,
                 );
               }
 
