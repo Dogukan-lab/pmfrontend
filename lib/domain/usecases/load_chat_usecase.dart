@@ -24,7 +24,9 @@ void loadChat(WidgetRef ref, Profile profile) async {
 }
 
 String formatDateTime(DateTime time, bool onlyTime) {
-  String result = '${time.hour}: ${time.minute}';
-  if (!onlyTime) result = '${time.day}/${time.month}/${time.year} $result';
+  String result = '${lead(time.hour)}: ${lead(time.minute)}';
+  if (!onlyTime) result = '${lead(time.day)}/${lead(time.month)}/${lead(time.year)} $result';
   return result;
 }
+
+String lead(int text) => text.toString().padLeft(2, '0');

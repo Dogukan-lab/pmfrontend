@@ -6,7 +6,7 @@ import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
-void getChatList(WidgetRef ref) async {
+Future<void> getChatList(WidgetRef ref) async {
   final username = ref.read(profileProvider).profile.username;
 
   final response = await apiGet('Chat/UserChats');

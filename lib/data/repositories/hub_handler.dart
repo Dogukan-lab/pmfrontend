@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
+import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 import 'package:pmfrontend/main.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_list_state.dart';
 import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
@@ -42,9 +44,25 @@ class HubHandler {
             final response = await apiGet('PmUser/GetUser', query: "username=$username");
 
             if (response != null && response.statusCode == HttpStatus.ok) {
+              //Decode incomming json
               Map<String, dynamic> json = jsonDecode(response.body);
-              ref.read(profileProvider.notifier).loadProfileState(ProfileState.fromShallowJson(json));
-              getChatList(ref);
+              final profileState = ProfileState.fromShallowJson(json);
+
+              //Reload profile (for friends list)
+              ref.read(profileProvider.notifier).loadProfileState(profileState);
+
+              //Refresh chatList
+              await getChatList(ref);
+
+              //Refresh selected Chat
+              final selected = ref.read(chatListProvider).selected;
+              if (selected != null) {
+                loadChat(
+                  ref,
+                  ref.read(chatListProvider).chats.firstWhere((chat) => chat.profile.username == selected.username).profile,
+                );
+              }
+
               print('Refreshed');
             } else {
               print(response?.statusCode ?? 'Response was null');

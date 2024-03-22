@@ -8,13 +8,11 @@ class Message {
   final DateTime time;
   final bool isSender;
 
-  factory Message.fromJson(Map<String, dynamic> json, String sender) {
-    return Message(
-      json['data'] as String,
-      DateTime.parse(json['timeStamp'] as String),
-      json['userName'] != sender,
-    );
-  }
+  factory Message.fromJson(Map<String, dynamic> json, String sender) => Message(
+        json['data'] as String,
+        DateTime.parse(json['timeStamp'] as String),
+        json['userName'] != sender,
+      );
 
   Map<String, dynamic> toJson(String username) => {
         'data': data,
