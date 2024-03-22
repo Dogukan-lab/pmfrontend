@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
 import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 
 class ChatListEntry {
   ChatListEntry(
@@ -11,21 +12,29 @@ class ChatListEntry {
   );
 
   final int chatId;
-  final Profile profile;
-  final String lastMessage;
+  final Profile profile; //Other user
+  final String lastMessage; //Last message sent
   final DateTime lastRead;
 
   factory ChatListEntry.fromJson(Map<String, dynamic> json, String ownUsername) {
     final List<dynamic> users = json['users'];
+    final List<Message> messages = (json['messages'] as List<dynamic>)
+        .map(
+          (element) => Message.fromJson(element, ownUsername),
+        )
+        .toList();
+
     Profile user = users.map((user) => Profile.fromJson(user)).toList().firstWhere(
           (user) => user.username != ownUsername,
         );
 
+    messages.sort((a, b) => a.time.compareTo(b.time));
+
     return ChatListEntry(
       json['chatId'] as int,
       user,
-      'Last Message',
-      DateTime.now(),
+      messages[0].data,
+      messages[0].time,
     );
   }
 }

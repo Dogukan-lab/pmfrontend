@@ -59,7 +59,7 @@ class ChatScreen extends ConsumerWidget {
                 requestFocus: true,
                 init: (controller) {},
                 onChanged: (controller) {},
-                onSubmitted: (value) => sendMessageUsecase(ref, value),
+                onSubmitted: (value) => sendMessageUsecase(ref, value, state.profile.username),
               ),
             ),
           ],

@@ -7,6 +7,20 @@ class Message {
   final String data;
   final DateTime time;
   final bool isSender;
+
+  factory Message.fromJson(Map<String, dynamic> json, String sender) {
+    return Message(
+      json['data'] as String,
+      DateTime.parse(json['timeStamp'] as String),
+      json['userName'] != sender,
+    );
+  }
+
+  Map<String, dynamic> toJson(String username) => {
+        'data': data,
+        'timeStamp': time.toIso8601String(),
+        'userName': username,
+      };
 }
 
 class ChatState {

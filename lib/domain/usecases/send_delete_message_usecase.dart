@@ -1,8 +1,23 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
+import 'dart:convert';
 
-void sendMessageUsecase(WidgetRef ref, String message) async {
-  ref.read(chatProvider.notifier).addMessage(Message(message, DateTime.now(), true));
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pmfrontend/data/repositories/server_handler.dart';
+import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
+import 'package:pmfrontend/presentation/states/people/profile_state.dart';
+
+void sendMessageUsecase(WidgetRef ref, String message, String targetUsername) async {
+  Message msg = Message(message, DateTime.now().toLocal(), true);
+  ref.read(chatProvider.notifier).addMessage(msg);
+
+  final response = await apiPost(
+    'Chat/SendMessage',
+    query: 'targetUsername=$targetUsername',
+    params: jsonEncode(
+      msg.toJson(ref.read(profileProvider).profile.username),
+    ),
+  );
+
+  print(response!.body);
 
   //Ping Hub
 }

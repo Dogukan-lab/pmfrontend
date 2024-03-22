@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/presentation/pages/home_page.dart';
@@ -11,7 +10,6 @@ import 'package:pmfrontend/presentation/molecules/login/login_inputs.dart';
 import 'package:pmfrontend/domain/usecases/login_and_register_usecase.dart';
 
 String apiToken = '';
-
 void main() {
   runApp(
     ProviderScope(

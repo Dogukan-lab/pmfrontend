@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 import 'package:pmfrontend/domain/usecases/send_delete_message_usecase.dart';
@@ -30,7 +29,10 @@ class ChatMessage extends StatelessWidget {
               Container(
                 width: Sizes.mediumMinus,
                 alignment: Alignment.center,
-                child: isHovering ? Text(formatDateTime(message.time, true), style: Styles.ggGrey) : null,
+                child: isHovering
+                    ? Text(formatDateTime(message.time, true),
+                        style: Styles.ggGrey)
+                    : null,
               ),
             Text(
               message.data,
