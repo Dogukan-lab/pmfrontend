@@ -10,9 +10,7 @@ void getSearchedUsers(WidgetRef ref, String searchTarget) async {
   final response = await apiGet('PmUser/AllUsers', query: 'searchTarget=$searchTarget');
 
   if (response != null && response.statusCode == HttpStatus.ok) {
-    List<dynamic> rawList = jsonDecode(
-      response.body,
-    );
+    List<dynamic> rawList = jsonDecode(response.body);
 
     List<Profile> list = rawList.map((user) => Profile.fromJson(user)).toList();
     ref.read(searchedUsersProvider.notifier).state = list;

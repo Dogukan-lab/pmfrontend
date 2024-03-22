@@ -4,14 +4,30 @@ import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 
 class ChatListEntry {
   ChatListEntry(
+    this.chatId,
     this.profile,
     this.lastMessage,
     this.lastRead,
   );
 
+  final int chatId;
   final Profile profile;
   final String lastMessage;
   final DateTime lastRead;
+
+  factory ChatListEntry.fromJson(Map<String, dynamic> json, String ownUsername) {
+    final List<dynamic> users = json['users'];
+    Profile user = users.map((user) => Profile.fromJson(user)).toList().firstWhere(
+          (user) => user.username != ownUsername,
+        );
+
+    return ChatListEntry(
+      json['chatId'] as int,
+      user,
+      'Last Message',
+      DateTime.now(),
+    );
+  }
 }
 
 class ChatListState {

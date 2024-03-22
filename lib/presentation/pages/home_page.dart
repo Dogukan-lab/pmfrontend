@@ -73,10 +73,7 @@ class HomePage extends ConsumerWidget {
   void startupProcedure(WidgetRef ref) async {
     await Future.delayed(Duration.zero);
 
-    //Get chats
-    getChatList(ref);
-
-    //Hub
     startHubConnection(ref);
+    getChatList(ref);
   }
 }

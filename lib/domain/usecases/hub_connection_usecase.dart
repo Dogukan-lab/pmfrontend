@@ -1,11 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/data/repositories/hub_handler.dart';
-import 'package:pmfrontend/presentation/states/people/profile_state.dart';
 
 void startHubConnection(WidgetRef ref) async {
-  var username = ref.read(profileProvider).profile.username;
-
-  hubHandler.init(ref, username);
+  hubHandler.init(ref);
 }
 
 void pingHubUser(String username) async {

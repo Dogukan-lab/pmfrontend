@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pmfrontend/data/repositories/server_handler.dart';
 import 'package:pmfrontend/presentation/pages/home_page.dart';
 import 'package:pmfrontend/presentation/pages/login_page.dart';
 import 'package:pmfrontend/presentation/states/login/login_state.dart';

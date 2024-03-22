@@ -47,8 +47,8 @@ class FriendsList extends StatelessWidget {
                 const HallownestHeader('Online shades'),
                 for (int i = 0; i < online.length; i++)
                   HomeListItem(
-                    user: friends[i],
-                    isLast: i == friends.length - 1,
+                    user: online[i],
+                    isLast: i == online.length - 1,
                   ),
 
                 //Divider

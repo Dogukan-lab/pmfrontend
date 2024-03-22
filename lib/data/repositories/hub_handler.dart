@@ -15,7 +15,7 @@ class HubHandler {
 
   late HubConnection _hub;
 
-  void init(WidgetRef ref, String username) async {
+  void init(WidgetRef ref) async {
     var url = 'https://localhost:7056/chatHub';
 
     _hub = HubConnectionBuilder()
@@ -29,18 +29,32 @@ class HubHandler {
     _hub.onreconnected(({connectionId}) => print("onreconnected called"));
 
     _hub.on('ReceivePing', (params) async {
-      if (params != null) {
-        for (final user in params) {
-          if (user == username || user == '*') {
+      print('------------------');
+      try {
+        final username = ref.read(profileProvider).profile.username;
+
+        print('$username received Ping from:');
+        if (params != null) {
+          final user = params[0];
+          print('$user');
+
+          if (user == username || (user == '*')) {
             final response = await apiGet('PmUser/GetUser', query: "username=$username");
 
             if (response != null && response.statusCode == HttpStatus.ok) {
               Map<String, dynamic> json = jsonDecode(response.body);
               ref.read(profileProvider.notifier).loadProfileState(ProfileState.fromShallowJson(json));
               getChatList(ref);
+              print('Refreshed');
+            } else {
+              print(response?.statusCode ?? 'Response was null');
             }
+          } else {
+            print('Ignored');
           }
         }
+      } catch (e) {
+        print('WidgetRef outdated or something...');
       }
     });
 
