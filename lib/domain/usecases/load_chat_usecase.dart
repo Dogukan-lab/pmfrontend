@@ -11,7 +11,7 @@ void loadChat(WidgetRef ref, Profile profile) async {
   final chat = ref.read(chatProvider.notifier);
   final chatState = ref.read(chatListProvider);
 
-  final id = chatState.chats.firstWhere((element) => chatState.selected == element.profile).chatId;
+  final id = chatState.chats.firstWhere((element) => chatState.selected!.username == element.profile.username).chatId;
 
   final response = await apiGet('Chat/Chat', query: 'id=$id');
 
@@ -21,14 +21,6 @@ void loadChat(WidgetRef ref, Profile profile) async {
     List<Message> messages = (jsonMap['messages'] as List<dynamic>).map((message) => Message.fromJson(message, profile.username)).toList();
     chat.loadChat(ChatState(profile, messages));
   }
-
-  // print()
-//Get list of messages from the current chat
-  // final List<Message> messages = chatState.chats.;
-  // print("MESSAGES MEN");
-  // for (var elemtn in chatState.messages) {
-  // print(elemtn.data);
-  // }
 }
 
 String formatDateTime(DateTime time, bool onlyTime) {

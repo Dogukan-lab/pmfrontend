@@ -14,9 +14,7 @@ void getChatList(WidgetRef ref) async {
     List<dynamic> rawList = jsonDecode(response.body);
     List<ChatListEntry> chats = rawList.map((chat) => ChatListEntry.fromJson(chat, username)).toList();
 
-    // print(response.body);
-
-    chats.sort((a, b) => a.lastRead.compareTo(b.lastRead));
+    chats.sort((a, b) => b.lastRead.compareTo(a.lastRead));
 
     ref.read(chatListProvider.notifier).loadChats(chats);
   }

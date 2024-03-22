@@ -37,6 +37,20 @@ class ChatListEntry {
       messages[messages.length - 1].time,
     );
   }
+
+  ChatListEntry copyWith({
+    int? chatId,
+    Profile? profile,
+    String? lastMessage,
+    DateTime? lastRead,
+  }) {
+    return ChatListEntry(
+      chatId ?? this.chatId,
+      profile ?? this.profile,
+      lastMessage ?? this.lastMessage,
+      lastRead ?? this.lastRead,
+    );
+  }
 }
 
 class ChatListState {
@@ -44,15 +58,39 @@ class ChatListState {
 
   final List<ChatListEntry> chats;
   final Profile? selected;
+
+  ChatListState copyWith({
+    List<ChatListEntry>? chats,
+    Profile? selected,
+  }) {
+    return ChatListState(
+      chats ?? this.chats,
+      selected ?? this.selected,
+    );
+  }
 }
 
 class ChatListNotifier extends StateNotifier<ChatListState> {
   ChatListNotifier() : super(ChatListState([], null));
 
   void loadChats(List<ChatListEntry> chats) => state = ChatListState(chats, state.selected);
+
   void selectChat(Profile? profile, WidgetRef ref) {
     state = ChatListState(state.chats, profile);
     if (profile != null) loadChat(ref, profile);
+  }
+
+  void updateChat(String username, Message message) {
+    final newList = List<ChatListEntry>.from(state.chats);
+    final chat = newList.firstWhere((chat) => chat.profile.username == username);
+
+    newList.remove(chat);
+    final newChat = chat.copyWith(lastMessage: message.data, lastRead: message.time);
+    newList.add(newChat);
+
+    newList.sort((a, b) => b.lastRead.compareTo(a.lastRead));
+
+    state = state.copyWith(chats: newList);
   }
 }
 

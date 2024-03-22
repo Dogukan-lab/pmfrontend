@@ -39,7 +39,8 @@ class ChatScreen extends ConsumerWidget {
                           isFirst: true,
                         ),
                       for (int i = 1; i < state.messages.length; i++)
-                        state.messages[i].isSender != state.messages[i - 1].isSender
+                        (state.messages[i].isSender != state.messages[i - 1].isSender) ||
+                                (state.messages[i].time.day != state.messages[i - 1].time.day)
                             ? ChatHeader(i, state.messages[i].isSender ? profile : state.profile, state.messages[i])
                             : ChatMessage(i, state.messages[i]),
                     ],
