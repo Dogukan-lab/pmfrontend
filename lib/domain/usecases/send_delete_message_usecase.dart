@@ -26,7 +26,7 @@ void sendMessageUsecase(WidgetRef ref, String message, String targetUsername) as
 
   //Refresh chatList
   final chatList = ref.read(chatListProvider.notifier);
-  chatList.updateChat(targetUsername, msg);
+  chatList.updateChat(targetUsername, msg, ref);
 }
 
 void deleteMessageUsecase(WidgetRef ref, int index) async {

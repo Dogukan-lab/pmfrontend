@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pmfrontend/presentation/atoms/images/profile_picture.dart';
@@ -12,6 +13,7 @@ class ProfileCard extends StatelessWidget {
     required this.online,
     this.size = Sizes.smallPlus,
     this.outlineSize = Pad.small,
+    this.width = Sizes.large,
   });
 
   final int icon;
@@ -20,6 +22,7 @@ class ProfileCard extends StatelessWidget {
   final bool online;
   final double size;
   final double outlineSize;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +60,13 @@ class ProfileCard extends StatelessWidget {
                   name,
                   style: Styles.gg.copyWith(fontSize: 20),
                 ),
-                Text(
-                  text,
-                  style: Styles.gg.copyWith(fontSize: 15),
+                SizedBox(
+                  width: width,
+                  child: Text(
+                    text,
+                    style: Styles.gg.copyWith(fontSize: 15),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),

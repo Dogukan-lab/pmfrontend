@@ -11,15 +11,21 @@ void loadChat(WidgetRef ref, Profile profile) async {
   final chat = ref.read(chatProvider.notifier);
   final chatState = ref.read(chatListProvider);
 
-  final id = chatState.chats.firstWhere((element) => chatState.selected == element.profile.id).chatId;
+  final entries = chatState.chats.where((element) => chatState.selected == element.profile.id).toList();
 
-  final response = await apiGet('Chat/Chat', query: 'id=$id');
+  if (entries.isNotEmpty) {
+    final id = entries[0].chatId;
 
-  if (response != null && response.statusCode == HttpStatus.ok) {
-    Map<String, dynamic> jsonMap = jsonDecode(response.body);
+    final response = await apiGet('Chat/Chat', query: 'id=$id');
 
-    List<Message> messages = (jsonMap['messages'] as List<dynamic>).map((message) => Message.fromJson(message, profile.username)).toList();
-    chat.loadChat(ChatState(profile, messages));
+    if (response != null && response.statusCode == HttpStatus.ok) {
+      Map<String, dynamic> jsonMap = jsonDecode(response.body);
+
+      List<Message> messages = (jsonMap['messages'] as List<dynamic>).map((message) => Message.fromJson(message, profile.username)).toList();
+      chat.loadChat(ChatState(profile, messages));
+    }
+  } else {
+    chat.loadChat(ChatState(profile, []));
   }
 }
 

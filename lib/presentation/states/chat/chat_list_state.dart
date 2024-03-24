@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pmfrontend/domain/entities/profile.dart';
+import 'package:pmfrontend/domain/usecases/get_chat_list_usecase.dart';
 import 'package:pmfrontend/domain/usecases/load_chat_usecase.dart';
 import 'package:pmfrontend/presentation/states/chat/chat_state.dart';
 
@@ -80,17 +81,22 @@ class ChatListNotifier extends StateNotifier<ChatListState> {
     if (profile != null) loadChat(ref, profile);
   }
 
-  void updateChat(String username, Message message) {
+  void updateChat(String username, Message message, WidgetRef ref) {
     final newList = List<ChatListEntry>.from(state.chats);
-    final chat = newList.firstWhere((chat) => chat.profile.username == username);
+    final chats = newList.where((chat) => chat.profile.username == username).toList();
 
-    newList.remove(chat);
-    final newChat = chat.copyWith(lastMessage: message.data, lastRead: message.time);
-    newList.add(newChat);
+    if (chats.isNotEmpty) {
+      final chat = chats[0];
 
-    newList.sort((a, b) => b.lastRead.compareTo(a.lastRead));
+      newList.remove(chat);
+      final newChat = chat.copyWith(lastMessage: message.data, lastRead: message.time);
+      newList.add(newChat);
 
-    state = state.copyWith(chats: newList);
+      newList.sort((a, b) => b.lastRead.compareTo(a.lastRead));
+      state = state.copyWith(chats: newList);
+    } else {
+      getChatList(ref);
+    }
   }
 }
 

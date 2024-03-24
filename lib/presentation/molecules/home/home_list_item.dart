@@ -46,6 +46,7 @@ class HomeListItem extends StatelessWidget {
                               text: user.status,
                               icon: user.icon,
                               online: user.online,
+                              width: Sizes.hugePlus,
                             ),
                             CustomIconButton(
                               FontAwesomeIcons.message,

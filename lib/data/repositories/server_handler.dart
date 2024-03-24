@@ -6,13 +6,16 @@ enum HttpMethod {
   get,
 }
 
+String baseURL = "https://localhost:7056/";
+// String baseURL = "https://w9dchbd2-7056.euw.devtunnels.ms/";
+
 Future<http.Response?> apiPost(String request, {String? query, String? params}) =>
     _apiRequest(HttpMethod.post, request, query: query, params: params);
 Future<http.Response?> apiGet(String request, {String? query, String? params}) => _apiRequest(HttpMethod.get, request, query: query, params: params);
 
 Future<http.Response?> _apiRequest(HttpMethod method, String request, {String? query, String? params}) async {
   try {
-    var uri = 'https://localhost:7056/api/$request';
+    var uri = '${baseURL}api/$request';
     if (query != null) uri += '?$query';
 
     final Map<String, String> header = {

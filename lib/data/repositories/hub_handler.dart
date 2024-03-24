@@ -18,7 +18,7 @@ class HubHandler {
   late HubConnection _hub;
 
   void init(WidgetRef ref) async {
-    var url = 'https://localhost:7056/chatHub';
+    var url = '${baseURL}chatHub';
 
     _hub = HubConnectionBuilder()
         .withUrl(

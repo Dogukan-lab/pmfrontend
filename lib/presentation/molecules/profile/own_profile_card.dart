@@ -44,6 +44,7 @@ class OwnProfileCard extends StatelessWidget {
                       online: true,
                       size: Sizes.mediumMinus,
                       outlineSize: Pad.smallPlus,
+                      width: Sizes.mediumPlus,
                     );
                   },
                 ),
